@@ -25,8 +25,8 @@ export const SliderHeader = () => {
                   return(
                     <Slide key={index} index={index}>
 
-                        <Box d="flex" justifyContent="center" alignItems="center" w="100%" h="25rem" className={styles.slider}>
-                        <Box>
+                        <Box  className={styles.slider}>
+                        <Box d="flex" alignItems="center" justifyContent="center">
                             <img src="/donuts.svg" alt="" />
                         </Box>
                         <Box className={styles.boxSlider} w="33rem" d="flex" alignItems="center" flexDirection="column" p="1rem 1rem">
@@ -48,7 +48,7 @@ export const SliderHeader = () => {
                   );
               })}
           </Slider>
-            <Box d="flex" justifyContent="center" w="100%" position="relative" bottom="5rem">
+            <Box className={styles.dot} d="flex" justifyContent="center" w="100%" position="relative" bottom="5rem">
                 {sliderHeader.map((item, index) => {
                     return(
                         <DotGroup
