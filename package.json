@@ -1,0 +1,31 @@
+{
+  "name": "sonho_vegan",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.6.1",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "date-fns": "^2.21.2",
+    "formik": "^2.2.6",
+    "framer-motion": "^4",
+    "next": "10.2.0",
+    "pure-react-carousel": "^1.27.6",
+    "react": "17.0.2",
+    "react-calendar": "^3.4.0",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.2.0",
+    "sass": "^1.32.12",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.2",
+    "@types/react": "^17.0.5",
+    "typescript": "^4.2.4"
+  }
+}
