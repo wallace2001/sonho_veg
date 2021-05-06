@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import styles from './index.module.scss';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
-import { milkshakes } from '../../data/milkshakeData';
 import { Box } from '@chakra-ui/layout';
 import { FiPlus } from 'react-icons/fi';
 import { AiOutlineExclamation } from 'react-icons/ai';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-export const ProductSlider = () => {
+interface Products{
+    name: string;
+    img: string;
+    description: string;
+    price: string;
+}
+
+interface PropsProductSlider{
+    title: string;
+    products: Array<Products>
+    colorContent: string;
+    colorAdd: string;
+    colorInfo: string;
+}
+
+export const ProductSlider = (props: PropsProductSlider) => {
     const [windowTam, setWindowTam] = useState<number>();
 
     useEffect(() => {
@@ -19,14 +33,14 @@ export const ProductSlider = () => {
         <div className={styles.container}>
             <div className={styles.background}>
 
-                <p className={styles.title}>MilkShakes</p>
+                <p className={styles.title}>{props.title}</p>
 
                 <div className={styles.content}>
                 <CarouselProvider
             className={styles.carousel}
             naturalSlideWidth={40}
             naturalSlideHeight={50}
-            totalSlides={milkshakes.length}
+            totalSlides={props.products.length}
             infinite={true}
             visibleSlides={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
             >
@@ -37,12 +51,12 @@ export const ProductSlider = () => {
                         </ButtonBack>
                     </Box>
             <Slider className={styles.sliderContainer}>
-                {milkshakes.map((item, index) => {
+                {props.products.map((item, index) => {
                     return(
                         <Slide key={index} index={index}>
                             <Box d="flex" flexDirection="column" alignItems="center" justifyContent="center">
 
-                                <Box className={styles.slider}>
+                                <Box className={styles.slider} bg={props.colorContent}>
                                     <Box d="flex" flexDirection="column" alignItems="center" justifyContent="center">
                                         <h2>{item.name}</h2>
                                         <img src={item.img} alt="" />
@@ -56,8 +70,8 @@ export const ProductSlider = () => {
                                 </Box>
 
                                 <Box className={styles.infoBalls} d="flex" alignItems="center">
-                                    <div><FiPlus color="#fff" size={25} /></div>
-                                    <div><AiOutlineExclamation color="#fff" size={25} /></div>
+                                    <div style={{background: props.colorAdd}}><FiPlus color="#fff" size={25} /></div>
+                                    <div style={{background: props.colorInfo}}><AiOutlineExclamation color="#fff" size={25} /></div>
                                 </Box>
                             </Box>
                         </Slide>
