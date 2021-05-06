@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from '../../styles/Home.module.scss';
 import { Button_Global } from '../components/Button';
 import { MenuHeader } from '../components/Header';
@@ -10,14 +10,21 @@ import { Login, Register } from '../components/LoginAndRegister';
 import { Box } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/layout';
 import { SliderHeader } from '../components/SliderHeader';
+import { IoMdCart } from 'react-icons/io';
+import { ProductSlider } from '../components/ProductSlider';
 
 export default function Home() {
   const [isOpenLogin, setIsOpenLogin] = useState(false);
+  const [windowTam, setWindowTam] = useState<number>();
   const [isOpenRegister, setIsOpenRegister] = useState(false);
   const { auth } = useContext(AuthContext);
-  console.log(auth);
+
+  useEffect(() => {
+    setWindowTam(window.innerWidth);
+  },[]);
 
   return (
+    <>
       <div className={styles.background}>
         <div className={styles.container}>
           <main className={styles.main}>
@@ -80,6 +87,32 @@ export default function Home() {
 
           </div>
         </div>
+
+        <div className={styles.cart}>
+          <IoMdCart size={25} color={windowTam <= 500 ? "#fff" : "#FFC9F0" } />
+        </div>
+
+        <div className={styles.cartValue}> 
+          <p>1</p>
+        </div>
+        
       </div>
+        <div style={{marginTop: '4rem'}}>
+          <ProductSlider />
+        </div>
+
+        <div className={styles.dream_veg}>
+          <div className={styles.background_second}>
+                <div>
+                  <img src="/donts.svg" alt="" />
+                </div>
+
+                <div>
+                  <h2>Sonho Veg</h2>
+                  <p>It is a long eer will be distracted by the readable content of a page when looki</p>
+                </div>
+          </div>
+        </div>
+        </>
   )
 }

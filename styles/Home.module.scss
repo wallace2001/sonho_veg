@@ -3,9 +3,13 @@
   height: 80px;
   position: fixed;
   z-index: 999;
-  // padding: 0 4rem 0 4rem;
+  padding: 0 4rem 0 4rem;
   background-color: var(--color-header);
   border-radius: 0 0 100px 0;
+
+  @media screen and (max-width: 800px){
+    padding: 0;
+  }
 
 }
 
@@ -104,6 +108,119 @@
 
     @media screen and (max-width: 800px){
       height: 40rem;
+    }
+  }
+}
+
+.cart{
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 2;
+  position: fixed;
+  top: 7rem;
+  right: 5rem;
+  border-radius: 100px;
+
+  background: rgba(255,255,255,.8);
+
+  &:hover{
+    transform: scale(1.02);
+  }
+
+  @media screen and (max-width: 500px){
+    right: 3rem;
+
+    background-color: rgb(255, 201, 240);
+  }
+
+}
+
+.cartValue{
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  position: fixed;
+  top: 6.3rem;
+  right: 4.5rem;
+  border-radius: 100px;
+
+  background: rgba(255,255,255,.8);
+
+  p{
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+
+  @media screen and (max-width: 500px){
+    right: 2.5rem;
+    top: 6rem;
+    background-color: rgb(255, 201, 240);
+
+    p{
+      color: white;
+    }
+  }
+}
+
+.dream_veg{
+  width: 100%;
+  height: 15rem;
+  background-image: url("/body.jpg");
+  background-size: 30%;
+  margin-bottom: 2rem;
+
+  .background_second{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    padding: 1rem 2rem;
+
+    background-color: rgba(247, 236, 198, 0.96);
+
+    div:first-child{
+      img{
+        width: 80%;
+        height: 80%;
+
+        object-fit: cover;
+      }
+    }
+
+    div:last-child{
+      width: 15rem;
+
+      @media screen and (max-width: 500px){
+        width: 17rem;
+      }
+
+      h2{
+        font-size: 2rem;
+        font-weight: 100;
+        font-family: Roboto;
+        text-align: center;
+      }
+
+      p{
+        text-align: center;
+        font-weight: 100;
+        font-family: Roboto;
+      }
     }
   }
 }

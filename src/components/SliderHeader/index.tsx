@@ -52,6 +52,7 @@ export const SliderHeader = () => {
                 {sliderHeader.map((item, index) => {
                     return(
                         <DotGroup
+                        key={index}
                         dotNumbers={true}
                         renderDots={(e) => {
                             setCurrentSlide(e.currentSlide);
