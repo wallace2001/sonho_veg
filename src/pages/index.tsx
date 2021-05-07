@@ -7,7 +7,7 @@ import { HeaderMenu } from "../data/header";
 import { FaUserAlt } from 'react-icons/fa';
 import { MenuIcon } from '../components/MenuIcon';
 import { Login, Register } from '../components/LoginAndRegister';
-import { Box } from '@chakra-ui/layout';
+import { Box, Divider } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/layout';
 import { SliderHeader } from '../components/SliderHeader';
 import { IoMdCart } from 'react-icons/io';
@@ -15,6 +15,8 @@ import { ProductSlider } from '../components/ProductSlider';
 
 import { milkshakes } from '../data/milkshakeData';
 import { donuts } from '../data/donuts';
+import { Information } from '../components/Information';
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
 export default function Home() {
   const [isOpenLogin, setIsOpenLogin] = useState(false);
@@ -132,6 +134,67 @@ export default function Home() {
                 colorAdd="#FFFF00"
                 colorInfo="#D88CFC"
               />
+            </div>
+
+            <div className={styles.three_product} style={{marginTop: '4rem'}}>
+              <div>
+                <ProductSlider 
+                  title="Bolos"
+                  products={milkshakes}
+                  colorContent="rgb(250, 243, 255)"
+                  colorAdd="#D88CFC"
+                  colorInfo="#FEE875"
+                  />
+              </div>
+            </div>
+
+            <div className={styles.containerContact}>
+              <Information 
+                  buttonText="Entre em contato"
+                  image="/contact.svg"
+                  description="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to"
+                  title="Entre em contato"
+                />
+            </div>
+
+            <div className={styles.line} />
+
+            <div className={styles.containerContact}>
+              <Information 
+                title="Sobre a gente"
+                buttonText="Entre em contato"
+                image="/about.svg"
+                reverse={true}
+                description="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to"
+              />
+            </div>
+
+            <div className={styles.line} />
+            
+            <div className={styles.footerMedia}>
+              <div className={styles.contentFooter}>
+                <label>
+                  <h2>LOGO</h2>
+                  <p>Comidas veganas</p>
+                </label>
+                <label>
+                  <p>Sobre</p>
+                  <p>Contato</p>
+                </label>
+              </div>
+            </div>  
+
+            <div className={styles.line} />  
+            
+            <div className={styles.mediaSocial}>
+              <div className={styles.contentMediaSocial}>
+                <div>
+                  <FaInstagram size={30} style={{marginRight: "2rem"}} />
+                  <FaFacebook size={30} color="#1877F2"/>
+                </div>
+
+                <p>©Copyright - todos os direitos autorais reservados.</p>
+              </div>
             </div>
           </div>
         </div>

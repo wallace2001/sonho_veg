@@ -1,16 +1,16 @@
 import React from 'react'
-import { Button, Text } from '@chakra-ui/react';
+import { Button, Text, ButtonProps } from '@chakra-ui/react';
 import styles from './button.module.scss';
 
-interface ButtonProps{
+interface ButtonAllProps extends ButtonProps{
     textButton: string;
     icon?: any;
     color?: string;
 }
 
-export const Button_Global = ({ textButton, icon, color, ...rest }: ButtonProps) => {
+export const Button_Global = ({ textButton, icon, color, ...rest }: ButtonAllProps) => {    
     return (
-        <Button colorScheme={color}>
+        <Button colorScheme={color} {...rest}>
             {icon && (
                 icon
             )}

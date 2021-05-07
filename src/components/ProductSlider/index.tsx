@@ -45,7 +45,7 @@ export const ProductSlider = (props: PropsProductSlider) => {
             visibleSlides={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
             >
                 <Box d="flex" justifyContent="space-between" position="relative">
-                    <Box position="relative" top="10rem" left="1rem">
+                    <Box position="relative" top="10rem" left="0.5rem">
                         <ButtonBack>
                             <IoIosArrowBack size={30}/>
                         </ButtonBack>
@@ -79,7 +79,7 @@ export const ProductSlider = (props: PropsProductSlider) => {
 })}
             </Slider>
 
-            <Box position="relative" top="10rem" right="1rem">
+            <Box position="relative" top="10rem" right="0.5rem">
                 <ButtonNext>
                     <IoIosArrowForward size={30}/>
                 </ButtonNext>
