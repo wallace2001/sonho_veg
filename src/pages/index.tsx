@@ -17,12 +17,18 @@ import { milkshakes } from '../data/milkshakeData';
 import { donuts } from '../data/donuts';
 import { Information } from '../components/Information';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { Cart } from '../components/Cart';
 
 export default function Home() {
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [windowTam, setWindowTam] = useState<number>();
   const [isOpenRegister, setIsOpenRegister] = useState(false);
+  const [isOpenCart, setIsOpenCart] = useState(false);
   const { auth } = useContext(AuthContext);
+
+  const onCloseCart = () => {
+    setIsOpenCart(prevState => prevState = false);
+  }
 
   useEffect(() => {
     setWindowTam(window.innerWidth);
@@ -94,14 +100,18 @@ export default function Home() {
             </div>
           </div>
 
-          <div className={styles.cart}>
-            <IoMdCart size={25} color={windowTam <= 500 ? "#fff" : "#FFC9F0" } />
+          <div className={styles.cart} onClick={() => setIsOpenCart(prevState => prevState = true)}>
+            <IoMdCart size={25} color="#fff" />
           </div>
 
-          <div className={styles.cartValue}> 
+          <div className={styles.cartValue} onClick={() => setIsOpenCart(prevState => prevState = true)}> 
             <p>1</p>
           </div>
           
+          <Cart 
+            isOpen={isOpenCart}
+            onClose={onCloseCart}
+          />
         </div>
           <div style={{marginTop: '4rem'}}>
             <ProductSlider 

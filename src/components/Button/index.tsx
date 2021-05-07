@@ -3,7 +3,7 @@ import { Button, Text, ButtonProps } from '@chakra-ui/react';
 import styles from './button.module.scss';
 
 interface ButtonAllProps extends ButtonProps{
-    textButton: string;
+    textButton?: string;
     icon?: any;
     color?: string;
 }
