@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router';
 import styles from './index.module.scss';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import { Box } from '@chakra-ui/layout';
 import { FiPlus } from 'react-icons/fi';
 import { AiOutlineExclamation } from 'react-icons/ai';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { Spinner } from '@chakra-ui/spinner';
 
 interface Products{
     name: string;
@@ -18,16 +20,31 @@ interface PropsProductSlider{
     products: Array<Products>
     colorContent: string;
     colorAdd: string;
+    quantitySlider: number;
     colorInfo: string;
 }
 
 export const ProductSlider = (props: PropsProductSlider) => {
     const [windowTam, setWindowTam] = useState<number>();
+    const [tamSlider, setTamSlider] = useState<number>();
+    const router = useRouter();
 
     useEffect(() => {
         setWindowTam(window.innerWidth);
-    }, [])
+        console.log(innerWidth);
+        if(window.innerWidth >= 1300){
+            setTamSlider(60)
+        }else if(window.innerWidth <= 983){
+            window.innerWidth <= 700 ? setTamSlider(60) : setTamSlider(50);
+        }else{
+            setTamSlider(50);
+        }
+    }, []);
 
+    
+  const handleClickViewerProduct = (name: string) => {
+    router.push(`/product/${name}`);
+  };
 
     return (
         <div className={styles.container}>
@@ -39,13 +56,13 @@ export const ProductSlider = (props: PropsProductSlider) => {
                 <CarouselProvider
             className={styles.carousel}
             naturalSlideWidth={40}
-            naturalSlideHeight={50}
+            naturalSlideHeight={tamSlider}
             totalSlides={props.products.length}
             infinite={true}
-            visibleSlides={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
+            visibleSlides={props.quantitySlider}
             >
                 <Box d="flex" justifyContent="space-between" position="relative">
-                    <Box position="relative" top="10rem" left="0.5rem">
+                    <Box position="relative" top="15rem" left="0.5rem">
                         <ButtonBack>
                             <IoIosArrowBack size={30}/>
                         </ButtonBack>
@@ -70,8 +87,8 @@ export const ProductSlider = (props: PropsProductSlider) => {
                                 </Box>
 
                                 <Box className={styles.infoBalls} d="flex" alignItems="center">
-                                    <div style={{background: props.colorAdd}}><FiPlus color="#fff" size={25} /></div>
-                                    <div style={{background: props.colorInfo}}><AiOutlineExclamation color="#fff" size={25} /></div>
+                                    <button style={{background: props.colorAdd}}><FiPlus color="#fff" size={25} /></button>
+                                    <button style={{background: props.colorInfo, cursor: "pointer"}} onClick={() => handleClickViewerProduct(props.title)}><AiOutlineExclamation color="#fff" size={25} /></button>
                                 </Box>
                             </Box>
                         </Slide>
@@ -79,7 +96,7 @@ export const ProductSlider = (props: PropsProductSlider) => {
 })}
             </Slider>
 
-            <Box position="relative" top="10rem" right="0.5rem">
+            <Box position="relative" top="15rem" right="0.5rem">
                 <ButtonNext>
                     <IoIosArrowForward size={30}/>
                 </ButtonNext>

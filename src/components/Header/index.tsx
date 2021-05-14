@@ -1,29 +1,111 @@
-import { Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from '@chakra-ui/menu'
-import { Box, Button } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/layout';
+import React, { useContext, useState } from 'react'
 import { FaUserAlt } from 'react-icons/fa';
-import { RiArrowDropDownFill } from 'react-icons/ri';
-import React from 'react';
+import { IoMdCart } from 'react-icons/io';
+import styles from './style.module.scss';
+import { AuthContext } from '../../context/authContext';
+import { HeaderMenu } from '../../data/header';
+import { Button_Global } from '../Button';
+import { MenuHeader } from '../ButtonHeader';
+import { Cart } from '../Cart';
+import { Login, Register } from '../LoginAndRegister';
+import { MenuIcon } from '../MenuIcon';
+import { SliderHeader } from '../SliderHeader';
 
-export const MenuHeader = () => {
+interface CartProps{
+    aleradyCart: boolean
+}
+
+export const Header = (props: CartProps) => {
+    const [isOpenRegister, setIsOpenRegister] = useState(false);
+    const [isOpenLogin, setIsOpenLogin] = useState(false);
+    const [isOpenCart, setIsOpenCart] = useState(false);
+    const { auth } = useContext(AuthContext);
+
+    const onCloseCart = () => {
+        setIsOpenCart(prevState => prevState = false);
+      }
+
     return (
-        <Menu>
-            <MenuButton as={Button} colorScheme="pink">
-                <Box d="flex" alignItems="center">
-                    <FaUserAlt color="#fff" />
-                    <p>Wallace</p>
-                    <RiArrowDropDownFill size={35} color="#fff"/>
-                </Box>
-            </MenuButton>
-        <MenuList>
-            <MenuGroup title="Perfil"style={{color: "black", fontWeight: "normal"}}>
-            <MenuItem>Meu Perfil</MenuItem>
-            <MenuItem>Compras </MenuItem>
-            </MenuGroup>
-            <MenuDivider />
-            <MenuGroup style={{color: "black", fontWeight: "normal"}} title="Conta">
-            <MenuItem>Sair</MenuItem>
-            </MenuGroup>
-        </MenuList>
-        </Menu>
+        <div className={styles.background}>
+          <div className={styles.container}>
+            <main className={styles.main}>
+
+              <div className={styles.left}>
+                <div />
+              </div>
+
+              <div className={styles.mid}>
+                <ul>
+                  {HeaderMenu.map((item, index) => {
+                    return(
+                      <a key={index}>{item.name}</a>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              <div className={styles.footer}>
+                {auth.user ? (
+                  <MenuHeader />
+                ) : (
+                  <Box d="flex" alignItems="center">
+                  <Box onClick={() => setIsOpenLogin(prevState => prevState = true)}>
+                    <Button_Global 
+                      textButton="Entrar"
+                      icon={<FaUserAlt color="#fff" />}
+                      color="pink"
+                      />
+
+                      <Login 
+                        isOpen={isOpenLogin}
+                        onClose={() => setIsOpenLogin(prevState => prevState = false)}
+                      />
+
+                      <Register 
+                        isOpen={isOpenRegister}
+                        onClose={() => setIsOpenRegister(prevState => prevState = false)}                      
+                      />
+
+                  </Box>
+                  <Box onClick={() => setIsOpenRegister(prevState => prevState = true)}>
+                    <Text>Cadastrar</Text>
+                  </Box>
+                    </Box>
+                )}
+
+              </div>
+
+              <div className={styles.menuIcon}>
+                <MenuIcon />
+              </div>
+
+            </main>
+          </div>
+          {props.aleradyCart && (
+              <>
+                    <div className={styles.content}>
+                    <div className={styles.contentBackground}>
+                        
+                        <SliderHeader />
+
+                    </div>
+                </div>
+
+                <div className={styles.cart} onClick={() => setIsOpenCart(prevState => prevState = true)}>
+                    <IoMdCart size={25} color="#fff" />
+                </div>
+
+                <div className={styles.cartValue} onClick={() => setIsOpenCart(prevState => prevState = true)}> 
+                    <p>1</p>
+                </div>
+                
+                <Cart 
+                    isOpen={isOpenCart}
+                    onClose={onCloseCart}
+                />
+              </>
+          )}
+        </div>
     )
 }

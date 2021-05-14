@@ -1,34 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
-import styles from '../../styles/Home.module.scss';
-import { Button_Global } from '../components/Button';
-import { MenuHeader } from '../components/Header';
-import { AuthContext } from '../context/authContext';
-import { HeaderMenu } from "../data/header";
-import { FaUserAlt } from 'react-icons/fa';
-import { MenuIcon } from '../components/MenuIcon';
-import { Login, Register } from '../components/LoginAndRegister';
-import { Box, Divider } from '@chakra-ui/layout';
-import { Text } from '@chakra-ui/layout';
-import { SliderHeader } from '../components/SliderHeader';
-import { IoMdCart } from 'react-icons/io';
-import { ProductSlider } from '../components/ProductSlider';
 
+import { ProductSlider } from '../components/ProductSlider';
+import styles from '../../styles/Home.module.scss';
 import { milkshakes } from '../data/milkshakeData';
 import { donuts } from '../data/donuts';
 import { Information } from '../components/Information';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
-import { Cart } from '../components/Cart';
+import { Header } from '../components/Header';
 
 export default function Home() {
-  const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [windowTam, setWindowTam] = useState<number>();
-  const [isOpenRegister, setIsOpenRegister] = useState(false);
-  const [isOpenCart, setIsOpenCart] = useState(false);
-  const { auth } = useContext(AuthContext);
-
-  const onCloseCart = () => {
-    setIsOpenCart(prevState => prevState = false);
-  }
 
   useEffect(() => {
     setWindowTam(window.innerWidth);
@@ -37,86 +18,12 @@ export default function Home() {
   return (
     <div className={styles.totalBackground}>
       <div className={styles.totalWallpaper}>
-        <div className={styles.background}>
-          <div className={styles.container}>
-            <main className={styles.main}>
-
-              <div className={styles.left}>
-                <div />
-              </div>
-
-              <div className={styles.mid}>
-                <ul>
-                  {HeaderMenu.map((item, index) => {
-                    return(
-                      <a key={index}>{item.name}</a>
-                    );
-                  })}
-                </ul>
-              </div>
-
-              <div className={styles.footer}>
-                {auth.user ? (
-                  <MenuHeader />
-                ) : (
-                  <Box d="flex" alignItems="center">
-                  <Box onClick={() => setIsOpenLogin(prevState => prevState = true)}>
-                    <Button_Global 
-                      textButton="Entrar"
-                      icon={<FaUserAlt color="#fff" />}
-                      color="pink"
-                      />
-
-                      <Login 
-                        isOpen={isOpenLogin}
-                        onClose={() => setIsOpenLogin(prevState => prevState = false)}
-                      />
-
-                      <Register 
-                        isOpen={isOpenRegister}
-                        onClose={() => setIsOpenRegister(prevState => prevState = false)}                      
-                      />
-
-                  </Box>
-                  <Box onClick={() => setIsOpenRegister(prevState => prevState = true)}>
-                    <Text>Cadastrar</Text>
-                  </Box>
-                    </Box>
-                )}
-
-              </div>
-
-              <div className={styles.menuIcon}>
-                <MenuIcon />
-              </div>
-
-            </main>
-          </div>
-          <div className={styles.content}>
-            <div className={styles.contentBackground}>
-                
-                <SliderHeader />
-
-            </div>
-          </div>
-
-          <div className={styles.cart} onClick={() => setIsOpenCart(prevState => prevState = true)}>
-            <IoMdCart size={25} color="#fff" />
-          </div>
-
-          <div className={styles.cartValue} onClick={() => setIsOpenCart(prevState => prevState = true)}> 
-            <p>1</p>
-          </div>
-          
-          <Cart 
-            isOpen={isOpenCart}
-            onClose={onCloseCart}
-          />
-        </div>
+        <Header aleradyCart={true} />
           <div style={{marginTop: '4rem'}}>
             <ProductSlider 
               title="MilkShakes"
               products={milkshakes}
+              quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
               colorContent="rgb(250, 243, 255)"
               colorAdd="#D88CFC"
               colorInfo="#FEE875"
@@ -140,6 +47,7 @@ export default function Home() {
               <ProductSlider 
                 title="Donuts"
                 products={donuts}
+                quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
                 colorContent="#FFFFF3"
                 colorAdd="#FFFF00"
                 colorInfo="#D88CFC"
@@ -151,6 +59,7 @@ export default function Home() {
                 <ProductSlider 
                   title="Bolos"
                   products={milkshakes}
+                  quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
                   colorContent="rgb(250, 243, 255)"
                   colorAdd="#D88CFC"
                   colorInfo="#FEE875"

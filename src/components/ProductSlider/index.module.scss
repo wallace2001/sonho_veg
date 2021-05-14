@@ -95,7 +95,7 @@
             
             .infoBalls{
                 margin-top: 1rem;
-                div:first-child{
+                button:first-child{
                     width: 40px;
                     height: 40px;
                     border-radius: 100px;
@@ -107,7 +107,7 @@
                     background-color: #D88CFC;
                 }
                 
-                div:last-child{
+                button:last-child{
                     width: 40px;
                     height: 40px;
                     border-radius: 100px;
