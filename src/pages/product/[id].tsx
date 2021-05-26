@@ -88,8 +88,8 @@ export default function Product({ id }){
                         />
                 </div>
 
-                <Footer />
             </div>
+            <Footer />
         </>
     );
 }

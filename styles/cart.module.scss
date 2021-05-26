@@ -1,0 +1,397 @@
+.container{
+    width: 100%;
+    height: 100vh;
+
+    padding: 20rem 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-background-cart);
+
+    @media screen and (max-height: 900px){
+        padding: 30rem 5rem;
+    }
+
+    @media screen and (max-height: 900px){
+        padding: 30rem 1rem;
+    }
+
+    @media screen and (max-height: 700px){
+        padding: 30rem 1rem;
+    }
+
+    @media screen and (max-width: 600px){
+        padding: 43rem 1rem;
+    }
+
+
+    .box{
+        width: 80%;
+        height: auto;
+
+        padding: 1rem 3rem;
+
+        background-color: #fff;
+
+        @media screen and (max-width: 1000px){
+            width: 90%;
+        }
+
+        @media screen and (max-width: 900px){
+            width: 100%;
+        }
+
+        .title{
+            width: 100%;
+            height: 4rem;
+
+            p{
+                font-size: 1.4rem;
+            }
+        }
+
+        .warning{
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            padding: 0 0 1rem 0;
+
+            h4{
+                font-size: 1.6rem;
+                font-family: "Ubuntu", sans-serif;
+                font-weight: bold;
+                color: #FAFF00;
+            }
+
+            p{
+                width: 80%;
+                padding: 1rem 0;
+            }
+
+            @media screen and (max-width: 600px){
+                p{
+                    width: 90%;
+                    text-align: center;
+                }
+            }
+
+            button{
+                width: 11rem;
+                height: 2rem;
+                border-radius: 0.4rem;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                color: #fff;
+                font-family: "Ubuntu", sans-serif;
+                font-weight: bold;
+
+                background-color: var(--color-button-whatsapp);
+            }
+        }
+
+        .cart{
+            width: 100%;
+            height: auto;
+
+            padding: 3rem 0;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            @media screen and (max-width: 600px){
+                display: none;
+            }
+
+            div:first-child{
+                height: 3rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+
+                label{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img{
+                        width: 5rem;
+                        height: 5rem;
+
+                        object-fit: contain;
+                        margin-right: 1rem;
+                    }
+
+                    p{
+                        font-size: 1.2rem;
+                        color: #000;
+                        font-family: 'Ubuntu', sans-serif;
+                        font-weight: bold;
+                    }
+                }
+
+                button{
+                    width: 8rem;
+                    height: 2rem;
+
+                    margin-top: 1rem;
+
+                    border: 1px solid #FC1B1B;
+                    border-radius: 0.7rem;
+                    color: #FC1B1B;
+
+                    transition: background-color 0.2s ease-in;
+
+                    &:hover{
+                        background-color: #FC1B1B;
+                        color: #fff;
+                    }
+                }
+            }
+
+            div:nth-child(2){
+                width: 7rem;
+                height: 3rem;
+
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                border: 0.6px solid #000;
+                border-radius: 0.7rem;
+
+                button:first-child{
+                    font-size: 1.1rem;
+                }
+
+                button:last-child{
+                    font-size: 1.3rem;
+                    color: #3CB1E2;
+                }
+            }
+
+            h4{
+                font-size: 1.4rem;
+                font-family: "Ubuntu", sans-serif;
+                font-weight: bold;
+
+            }
+        }
+
+        .cartMobile{
+            width: 100%;
+            height: auto;
+
+            padding: 3rem 0;
+
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+
+            @media screen and (max-width: 600px){
+                display: flex;
+            }
+
+            div:first-child{
+                height: 3rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+
+                label{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img{
+                        width: 5rem;
+                        height: 5rem;
+
+                        object-fit: contain;
+                        margin-right: 1rem;
+                    }
+
+                    p{
+                        font-size: 1.2rem;
+                        color: #000;
+                        font-family: 'Ubuntu', sans-serif;
+                        font-weight: bold;
+                    }
+                }
+
+
+            }
+
+            div:nth-child(2){
+                width: 7rem;
+                height: 3rem;
+
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                margin: 5rem 0;
+
+                border: 0.6px solid #000;
+                border-radius: 0.7rem;
+
+                button:first-child{
+                    font-size: 1.1rem;
+                }
+
+                button:last-child{
+                    font-size: 1.3rem;
+                    color: #3CB1E2;
+                }
+            }
+
+            .delete{
+                width: 8rem;
+                height: 2rem;
+
+                margin-top: 1rem;
+
+                border: 1px solid #FC1B1B;
+                border-radius: 0.7rem;
+                color: #FC1B1B;
+
+                transition: background-color 0.2s ease-in;
+
+                &:hover{
+                    background-color: #FC1B1B;
+                    color: #fff;
+                }
+
+                @media screen and (max-width: 600px){
+                    width: 11rem;
+                }
+            }
+
+            h4{
+                font-size: 1.4rem;
+                font-family: "Ubuntu", sans-serif;
+                font-weight: bold;
+
+            }
+        }
+
+        .payment{
+            width: 100%;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            div:first-child{
+                width: 100%;
+                padding: 1rem 4rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                @media screen and (max-width: 500px){
+                    padding: 1rem 1rem;
+                }
+
+                p:first-child{
+                    font-size: 1.3rem;
+                    font-family: 'Ubuntu', sans-serif;
+                    font-weight: bold;
+                }
+
+                button{
+                    font-size: 1.1rem;
+                    color: #6ABED0;
+                }
+            }
+
+            div:last-child{
+                width: 100%;
+                padding: 1rem 4rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                @media screen and (max-width: 500px){
+                    padding: 1rem 1rem;
+                }
+
+                p:first-child{
+                    font-size: 1.3rem;
+                    font-family: 'Ubuntu', sans-serif;
+                    font-weight: bold;
+                }
+
+                p:last-child{
+                    font-size: 1.1rem;
+                    font-family: 'Ubuntu', sans-serif;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .paymentButton{
+            width: 100%;
+
+            padding: 3rem 8rem;
+            
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            @media screen and (max-width: 600px){
+                justify-content: center;
+            }
+
+            button{
+                width: 8rem;
+                height: 3rem;
+                border-radius: 0.5rem;
+
+                border: 1px solid #432158;
+                color: #432158;
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: bold;
+
+                transition: background 0.2s ease-in;
+
+                &:hover{
+                    background: #432158;
+                    color: #fff;
+                }
+
+                @media screen and (max-width: 600px){
+                    padding: 0 2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+.line{
+    width: 100%;
+    height: 0.1rem;
+
+    background-color: var(--color-background-cart);
+}

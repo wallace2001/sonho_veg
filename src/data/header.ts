@@ -1,7 +1,7 @@
 export const HeaderMenu = [
     {
         name: "Início",
-        from: "/home"
+        from: "/"
     },
     {
         name: "Cardápio",
@@ -14,5 +14,9 @@ export const HeaderMenu = [
     {
         name: "Sobre",
         from: "/about"
+    },
+    {
+        name: "Carrinho",
+        from: "/cart"
     },
 ]

@@ -1,6 +1,6 @@
 import { useDisclosure } from '@chakra-ui/hooks'
 import styles from './index.module.scss';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus, AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
 import { BiMinus } from 'react-icons/bi';
 import { BsTrash } from 'react-icons/bs';
 import { 
@@ -57,9 +57,9 @@ export const Cart = ({ isOpen, onClose }: PropsCart) => {
         finalFocusRef={btnRef}
       >
             <DrawerOverlay />
-            <DrawerContent>
+            <DrawerContent d="flex" flexDirection="column" justifyContent="space-between">
             <div className={styles.background}>
-                <Box w="100%" h="100%" bg="rgba(245, 245, 245, .90)">
+                <Box w="100%" overflow="auto" h="100%" bg="rgba(245, 245, 245, .90)">
                 <DrawerCloseButton />
                 <DrawerHeader>Carrinho</DrawerHeader>
 
@@ -69,10 +69,10 @@ export const Cart = ({ isOpen, onClose }: PropsCart) => {
                         <Box className={styles.content} w="100%" d="flex" flexDirection="column">
                             <div className={styles.add}>
                                 <img src="/milkshake.svg" alt="" />
-                                <div style={{padding: "1rem 0"}}>
-                                    <button onClick={handleAddProduct}><AiOutlinePlus color="#fff" fontWeight="bold" /></button>
+                                <div style={{padding:"0.4rem 0" , width: 100, borderRadius: 10, border: "1px solid #000"}}>
+                                    <button onClick={handleRemoveProduct}><BiMinus color="#000" /></button>
                                     <label style={{padding: "0 1rem"}}>x{number}</label>
-                                    <button onClick={handleRemoveProduct}><BiMinus color="#fff" /></button>
+                                    <button onClick={handleAddProduct}><AiOutlinePlus color="#000" fontWeight="bold" /></button>
                                 </div>
                             </div>
                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-le</p>
@@ -88,14 +88,22 @@ export const Cart = ({ isOpen, onClose }: PropsCart) => {
                 </DrawerBody>
 
                 <DrawerFooter d="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                    <Box w="100%" h="2rem" bg="rgba(255,255,255)" d="flex" alignItems="center" justifyContent="center">
-                        <Text fontWeight="normal" fontSize={20}>Total: R$: {priceProduct.toFixed(2)}</Text>
+                    <Box w="100%" h="10rem" bg="rgba(255,255,255)" d="flex" flexDirection="column" alignItems="center" justifyContent="center">
+                        <Box w="100%" d="flex" justifyContent="space-between" p="0 1rem">
+                            <Text>Endereço</Text>
+                            <AiFillCloseCircle size={25} color="#fc1212" />
+                        </Box>
+                        <Box w="100%" d="flex" justifyContent="space-between" p="1rem 1rem">
+                            <Text>Total</Text>
+                            <Text>R$: {priceProduct.toFixed(2)}</Text>
+                        </Box>
+                        <Button_Global
+                            mt={4}
+                            icon={<AiFillCheckCircle style={{marginRight: 5}} size={25} color="#38fc65" />}
+                            textButton="Finalizar"
+                            color="purple"
+                        />
                     </Box>
-                    <Button_Global
-                        mt={4}
-                        textButton="Finalizar"
-                        color="blue"
-                    />
                 </DrawerFooter>
                 </Box>
             </div>

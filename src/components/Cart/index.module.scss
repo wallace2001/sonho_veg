@@ -21,29 +21,31 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: row;
+                // padding: 1rem 0;
 
                 button:nth-child(1){
                     width: 20px;
-                    height: 20px;
-                    border-radius: 10px;
+                    height: 100%;
+                    border-right: 1px solid #000;
 
                     display: flex;
                     align-items: center;
                     justify-content: center;
 
-                    background-color: #18BCF0;
+                    // background-color: #18BCF0;
                 }
 
                 button:nth-child(3){
                     width: 20px;
-                    height: 20px;
-                    border-radius: 10px;
+                    height: 100%;
+
+                    border-left: 1px solid #000;
 
                     display: flex;
                     align-items: center;
                     justify-content: center;
 
-                    background-color: #F01818;
+                    // background-color: #F01818;
                 }
             }
         }

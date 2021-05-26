@@ -11,6 +11,7 @@ import { Cart } from '../Cart';
 import { Login, Register } from '../LoginAndRegister';
 import { MenuIcon } from '../MenuIcon';
 import { SliderHeader } from '../SliderHeader';
+import { useRouter } from 'next/router';
 
 interface CartProps{
     aleradyCart: boolean
@@ -21,6 +22,7 @@ export const Header = (props: CartProps) => {
     const [isOpenLogin, setIsOpenLogin] = useState(false);
     const [isOpenCart, setIsOpenCart] = useState(false);
     const { auth } = useContext(AuthContext);
+    const router = useRouter();
 
     const onCloseCart = () => {
         setIsOpenCart(prevState => prevState = false);
@@ -39,7 +41,7 @@ export const Header = (props: CartProps) => {
                 <ul>
                   {HeaderMenu.map((item, index) => {
                     return(
-                      <a key={index}>{item.name}</a>
+                      <a key={index} onClick={() => router.push(item.from)}>{item.name}</a>
                     );
                   })}
                 </ul>
@@ -92,18 +94,13 @@ export const Header = (props: CartProps) => {
                     </div>
                 </div>
 
-                <div className={styles.cart} onClick={() => setIsOpenCart(prevState => prevState = true)}>
+                <div className={styles.cart} onClick={() => router.push('/cart')}>
                     <IoMdCart size={25} color="#fff" />
                 </div>
 
-                <div className={styles.cartValue} onClick={() => setIsOpenCart(prevState => prevState = true)}> 
+                <div className={styles.cartValue} onClick={() => router.push('/cart')}> 
                     <p>1</p>
                 </div>
-                
-                <Cart 
-                    isOpen={isOpenCart}
-                    onClose={onCloseCart}
-                />
               </>
           )}
         </div>
