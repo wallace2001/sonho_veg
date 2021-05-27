@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export const Http = axios.create({
-    baseURL: 'http://localhost:3002/'
+    baseURL: 'https://sonhovegan-com-br.umbler.net/'
 });
 
 export const HttpAuth = axios.create({
-    baseURL: 'http://localhost:3002/auth/'
+    baseURL: 'https://sonhovegan-com-br.umbler.net/auth/'
 });
 
 HttpAuth.interceptors.request.use(
