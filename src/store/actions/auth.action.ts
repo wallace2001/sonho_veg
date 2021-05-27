@@ -9,11 +9,22 @@ interface UserProps{
     telphone: string;
 }
 
+interface credentialsRegisterProps{
+        name: string;
+        email: string;
+        password: string;
+        date: any;
+        telphone?: string;
+        sex: string;
+        cpf?: string;
+}
+
 export const actionTypes = {
     CHANGE: "AUTH_CHANGE",
     SUCCESS: "AUTH_SUCCESS",
     ACCOUNT: "AUTH_ACCOUNT",
-    ERROR: "AUTH_ERROR"
+    ERROR: "AUTH_ERROR",
+    STATUS: "AUTH.STATUS"
 }
 
 export const change = (payload) => ({
@@ -33,6 +44,11 @@ export const account = (payload) => ({
 
 export const error = (payload) => ({
     type: actionTypes.ERROR,
+    payload
+});
+
+export const status = (payload) => ({
+    type: actionTypes.STATUS,
     payload
 });
 
@@ -132,5 +148,31 @@ export const login = (credentials, checked) => dispatch => {
         //         class: 'error',
         //     }))
         // }
+    })
+}
+
+export const register = (credential: credentialsRegisterProps) => dispatch => {
+    dispatch(changeLoading({
+        open: true
+    }))
+
+    Http.post('createUser', credential).then(res => {
+        if(typeof res !== 'undefined'){
+            if(res.data.status){
+                const credentials = {
+                    email: credential.email,
+                    password: credential.password
+                }
+                dispatch(status(true));
+                dispatch(login(credentials, false));
+            }
+        }
+        if(res.data.error){
+            dispatch(status(false));
+            dispatch(error({
+                ok: true,
+                message: res.data.error
+            }))
+        }
     })
 }

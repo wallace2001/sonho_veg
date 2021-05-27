@@ -28,7 +28,7 @@ import {
   AlertIcon} 
   from '@chakra-ui/react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { accountInfo, accountVerify, login } from '../../store/actions/auth.action';
+import { accountInfo, accountVerify, login, register } from '../../store/actions/auth.action';
 
 interface LoginProps{
     isOpen: boolean;
@@ -182,11 +182,14 @@ export const Register = ({ isOpen, onClose }: RegisterProps) => {
   const [show, setShow] = useState(false)
   const [date, setDate] = useState(new Date());
   const [errorValidationDate, setErrorValidationDate] = useState<string>('');
+  const dispatch = useDispatch();
+  const { status, error } = useSelector((state: RootStateOrAny) => state.authReducer);
 
   const validationSchema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
     password: yup.string().required("Senha obrigatória"),
     name: yup.string().required("Nome obrigatório"),
+    telphone: yup.string(),
   });
   const {
     values,
@@ -195,14 +198,24 @@ export const Register = ({ isOpen, onClose }: RegisterProps) => {
     handleBlur,
     handleChange,
     handleSubmit,
-    isSubmitting
+    isSubmitting,
+    setSubmitting
   } = useFormik({
-    onSubmit: (e) => console.log({...e, date, sex: value}),
+    onSubmit: async (e) => {
+      const credential = {
+        ...e, date, sex: value
+      };
+      await dispatch(register(credential));
+      if(error.ok){
+        setSubmitting(false);
+      }
+    },
     validationSchema,
     initialValues: {
       email: "",
       password: "",
       name: "",
+      telphone: ""
     }
   });
 
@@ -232,72 +245,112 @@ export const Register = ({ isOpen, onClose }: RegisterProps) => {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Registrar</DrawerHeader>
+          {status ? (
+            <>
+              <DrawerCloseButton />
+              <DrawerHeader>Registrar</DrawerHeader>
 
-          <DrawerBody>
-          <FormControl id="email">
-                <Text>E-mail</Text>
-                <Input type="text" placeholder="Digite seu e-mail" value={values.email} onChange={handleChange} onBlur={handleBlur} />
-                {touched.email && <FormHelperText>{errors.email}</FormHelperText>}
-              </FormControl>
+              {error.ok ? 
+                <Alert>
+                  <AlertIcon />
+                  {error.message}
+                </Alert> : ''
+              }
 
-              <FormControl id="name" mt={4}>
-                  <Text>Nome</Text>
-                  <Input type="text" placeholder="Digite seu nome" value={values.name} onChange={handleChange} onBlur={handleBlur} />
-                  {touched.name && <FormHelperText>{errors.name}</FormHelperText>}
-              </FormControl>
+              <DrawerBody>
+                <Text>Parabéns, sua conta foi criada com sucesso.</Text>
+                <Text>Um e-mail de confirmação foi enviado para seu email, é preciso confirmar para fazer o login.</Text>
+              </DrawerBody>
+              <DrawerFooter>
+                <Button variant="outline" mr={3} onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button colorScheme="pink" disabled>Cadastrar</Button>
+            </DrawerFooter>
+            </>
+          ) : (
+            <>
+              <DrawerCloseButton />
+                <DrawerHeader>Registrar</DrawerHeader>
 
-              <FormControl id="sex">
-                <RadioGroup value={value} onChange={(e) => setValue(e)} onBlur={handleBlur} mt={4}>
-                  <Text>Sexo</Text>
-                  <Stack direction="row">
-                    <Radio value="1">Masculino</Radio>
-                    <Radio value="2">Feminino</Radio>
-                    <Radio value="3">Não opinar</Radio>
-                  </Stack>
-                </RadioGroup>
-              </FormControl>
+                {error.ok ? 
+                <Alert status="error">
+                  <AlertIcon />
+                  {error.message}
+                </Alert> : ''
+              }
 
-              <FormControl mt={4} id="date">
-                <Text>Data de Nascimento</Text>
-                <Button 
-                  mt={3}
-                  colorScheme="pink" 
-                  onClick={() => setIsOpenCalendar(prevState => prevState = true)}
-                  >Data: {format(date, 'd/MM/yyyy', { locale: ptBR })}</Button>
+                <DrawerBody>
+                <FormControl id="email">
+                      <Text>E-mail</Text>
+                      <Input type="text" placeholder="Digite seu e-mail" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+                      {touched.email && <FormHelperText>{errors.email}</FormHelperText>}
+                    </FormControl>
 
-                <CalendarData isOpen={isOpenCalendar} date={date} setDate={setDate} onClose={handleCloseModalCalendar} />
-                {errorValidationDate !== '' ? <FormHelperText>{errorValidationDate}</FormHelperText> : ''}
-              </FormControl>
+                    <FormControl id="name" mt={4}>
+                        <Text>Nome</Text>
+                        <Input type="text" placeholder="Digite seu nome" value={values.name} onChange={handleChange} onBlur={handleBlur} />
+                        {touched.name && <FormHelperText>{errors.name}</FormHelperText>}
+                    </FormControl>
 
-              <FormControl id="password" mt={4}>
-                  <Text>Senha</Text>
-                <InputGroup size="md">
-                  <Input
-                    pr="4.5rem"
-                    type={show ? "text" : "password"}
-                    placeholder="Digite sua senha"
-                    value={values.password} 
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
-                    />
-                  <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleClick}>
-                      {show ? "Hide" : "Show"}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-                  {touched.password && <FormHelperText>{errors.password}</FormHelperText>}
-              </FormControl>
-          </DrawerBody>
+                    <FormControl id="telhpne" mt={4}>
+                        <Text>Telefone</Text>
+                        <Input type="text" placeholder="(99) 99999-9999" value={values.telphone} onChange={handleChange} onBlur={handleBlur} />
+                        {touched.telphone && <FormHelperText>{errors.telphone}</FormHelperText>}
+                    </FormControl>
 
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="pink" onClick={handleSubmitRegister} isLoading={isSubmitting}>Cadastrar</Button>
-          </DrawerFooter>
+                    <FormControl id="sex">
+                      <RadioGroup value={value} onChange={(e) => setValue(e)} onBlur={handleBlur} mt={4}>
+                        <Text>Sexo</Text>
+                        <Stack direction="row">
+                          <Radio value="1">Masculino</Radio>
+                          <Radio value="2">Feminino</Radio>
+                          <Radio value="3">Não opinar</Radio>
+                        </Stack>
+                      </RadioGroup>
+                    </FormControl>
+
+                    <FormControl mt={4} id="date">
+                      <Text>Data de Nascimento</Text>
+                      <Button 
+                        mt={3}
+                        colorScheme="pink" 
+                        onClick={() => setIsOpenCalendar(prevState => prevState = true)}
+                        >Data: {format(date, 'd/MM/yyyy', { locale: ptBR })}</Button>
+
+                      <CalendarData isOpen={isOpenCalendar} date={date} setDate={setDate} onClose={handleCloseModalCalendar} />
+                      {errorValidationDate !== '' ? <FormHelperText>{errorValidationDate}</FormHelperText> : ''}
+                    </FormControl>
+
+                    <FormControl id="password" mt={4}>
+                        <Text>Senha</Text>
+                      <InputGroup size="md">
+                        <Input
+                          pr="4.5rem"
+                          type={show ? "text" : "password"}
+                          placeholder="Digite sua senha"
+                          value={values.password} 
+                          onChange={handleChange} 
+                          onBlur={handleBlur}
+                          />
+                        <InputRightElement width="4.5rem">
+                          <Button h="1.75rem" size="sm" onClick={handleClick}>
+                            {show ? "Hide" : "Show"}
+                          </Button>
+                        </InputRightElement>
+                      </InputGroup>
+                        {touched.password && <FormHelperText>{errors.password}</FormHelperText>}
+                    </FormControl>
+                </DrawerBody>
+
+                <DrawerFooter>
+                  <Button variant="outline" mr={3} onClick={onClose}>
+                    Cancel
+                  </Button>
+                  <Button colorScheme="pink" onClick={handleSubmitRegister} isLoading={isSubmitting}>Cadastrar</Button>
+                </DrawerFooter>
+            </>
+          )}
         </DrawerContent>
       </Drawer>
     )

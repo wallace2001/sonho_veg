@@ -13,6 +13,7 @@ interface AuthProps{
         name: string;
         sex: string;
         telphone: string;
+        admin: boolean;
     }
 }
 
@@ -36,6 +37,14 @@ export const MenuHeader = () => {
             <MenuItem onClick={() => router.push('/profile')}>Meu Perfil</MenuItem>
             <MenuItem>Compras</MenuItem>
             </MenuGroup>
+            {account.admin ? (
+                <>
+                <MenuDivider />
+                <MenuGroup style={{color: "black", fontWeight: "normal"}} title="Administrador">
+                    <MenuItem>Admin</MenuItem>
+                </MenuGroup>
+                </>
+            ) : null}
             <MenuDivider />
             <MenuGroup style={{color: "black", fontWeight: "normal"}} title="Conta">
             <MenuItem onClick={() => dispatch(logout())}>Sair</MenuItem>

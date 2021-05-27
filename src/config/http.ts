@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export const Http = axios.create({
-    baseURL: 'https://sonhovegan-com-br.umbler.net/'
+    baseURL: process.env.NEXT_PUBLIC_URL_API_WEB_SERVER
 });
 
 export const HttpAuth = axios.create({
-    baseURL: 'https://sonhovegan-com-br.umbler.net/auth/'
+    baseURL: process.env.NEXT_PUBLIC_URL_API_AUTH_SERVER
 });
 
 HttpAuth.interceptors.request.use(

@@ -17,7 +17,8 @@ const initialState = {
     error: {
         ok: false,
         message: ""
-    }
+    },
+    status: false
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -54,6 +55,11 @@ export default (state = initialState, { type, payload }) => {
                 ...state.error,
                 ...payload
             }
+        }
+    case actionTypes.STATUS:
+        return{
+            ...state,
+            status: payload
         }
 
     default:
