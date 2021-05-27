@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { FormEvent, useCallback, useEffect, useState } from 'react'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 
@@ -181,6 +181,7 @@ export const Register = ({ isOpen, onClose }: RegisterProps) => {
   const [value, setValue] = useState<string>("3");
   const [show, setShow] = useState(false)
   const [date, setDate] = useState(new Date());
+  const [telphone, setTelphone] = useState<string>('');
   const [errorValidationDate, setErrorValidationDate] = useState<string>('');
   const dispatch = useDispatch();
   const { status, error } = useSelector((state: RootStateOrAny) => state.authReducer);
@@ -203,7 +204,10 @@ export const Register = ({ isOpen, onClose }: RegisterProps) => {
   } = useFormik({
     onSubmit: async (e) => {
       const credential = {
-        ...e, date, sex: value
+        ...e, 
+        date,
+        sex: value,
+        telphone
       };
       await dispatch(register(credential));
       if(error.ok){
@@ -218,6 +222,15 @@ export const Register = ({ isOpen, onClose }: RegisterProps) => {
       telphone: ""
     }
   });
+
+  const handleKeyUp = useCallback((e: FormEvent<HTMLInputElement>) => {
+    e.currentTarget.maxLength = 12;
+    let value = e.currentTarget.value;
+    value = value.replace(/\D/g, "");
+    value = value.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+    e.currentTarget.value = value;
+    setTelphone(value);
+  }, []);
 
   const handleCloseModalCalendar = () => setIsOpenCalendar(prevState => prevState = false);
   const handleClick = () => setShow(prevState => !prevState);
@@ -293,10 +306,9 @@ export const Register = ({ isOpen, onClose }: RegisterProps) => {
                         {touched.name && <FormHelperText>{errors.name}</FormHelperText>}
                     </FormControl>
 
-                    <FormControl id="telhpne" mt={4}>
+                    <FormControl id="telphone" mt={4}>
                         <Text>Telefone</Text>
-                        <Input type="text" placeholder="(99) 99999-9999" value={values.telphone} onChange={handleChange} onBlur={handleBlur} />
-                        {touched.telphone && <FormHelperText>{errors.telphone}</FormHelperText>}
+                        <Input onKeyUp={handleKeyUp} type="text" placeholder="(99) 99999-9999" />
                     </FormControl>
 
                     <FormControl id="sex">
