@@ -107,10 +107,12 @@ export const login = (credentials, checked) => dispatch => {
                 dispatch(accountInfo(res.data.account));
             }
         }
-        dispatch(error({
-            ok: true,
-            message: res.data.error
-        }))
+        if(res.data.error){
+            dispatch(error({
+                ok: true,
+                message: res.data.error
+            }))
+        }
     }).catch((error) => {
         console.log(error);
         // dispatch(changeLoading({ open: false }));
