@@ -7,11 +7,11 @@ import { AuthContext } from '../../context/authContext';
 import { HeaderMenu } from '../../data/header';
 import { Button_Global } from '../Button';
 import { MenuHeader } from '../ButtonHeader';
-import { Cart } from '../Cart';
 import { Login, Register } from '../LoginAndRegister';
 import { MenuIcon } from '../MenuIcon';
 import { SliderHeader } from '../SliderHeader';
 import { useRouter } from 'next/router';
+import { RootStateOrAny, useSelector } from 'react-redux';
 
 interface CartProps{
     aleradyCart: boolean
@@ -21,7 +21,8 @@ export const Header = (props: CartProps) => {
     const [isOpenRegister, setIsOpenRegister] = useState(false);
     const [isOpenLogin, setIsOpenLogin] = useState(false);
     const [isOpenCart, setIsOpenCart] = useState(false);
-    const { auth } = useContext(AuthContext);
+
+    const { account } = useSelector((state: RootStateOrAny) => state.authReducer);
     const router = useRouter();
 
     const onCloseCart = () => {
@@ -48,7 +49,7 @@ export const Header = (props: CartProps) => {
               </div>
 
               <div className={styles.footer}>
-                {auth.user ? (
+                {account.ok ? (
                   <MenuHeader />
                 ) : (
                   <Box d="flex" alignItems="center">

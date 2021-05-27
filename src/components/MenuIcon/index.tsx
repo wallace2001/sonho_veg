@@ -10,12 +10,22 @@ import { Login, Register } from '../LoginAndRegister/index';
 import styles from './menu.module.scss';
 import { HeaderMenu } from "../../data/header";
 import { Button_Global } from '../Button';
+import { RootStateOrAny, useSelector } from 'react-redux';
+import { MenuHeader } from '../ButtonHeader';
+
+interface AuthProps{
+  account: {
+    ok: boolean;
+  }
+}
 
 export const MenuIcon = () => {
     const [isOpenLogin, setIsOpenLogin] = useState(false);
     const [isOpenRegister, setIsOpenRegister] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure()
     const firstField = useRef()
+
+    const { account }: AuthProps = useSelector((state: RootStateOrAny) => state.authReducer);
       
     return (
         <>
@@ -51,19 +61,25 @@ export const MenuIcon = () => {
 
                 <DrawerBody>
                   <Stack spacing="24px">
-                    <Box d="flex" flexDirection="column" onClick={() => setIsOpenLogin(prevState => prevState = true)}>
-                        <Button_Global
+                    {account.ok ? (
+                      <MenuHeader />
+                    ) : (
+                      <>
+                        <Box d="flex" flexDirection="column" onClick={() => setIsOpenLogin(prevState => prevState = true)}>
+                          <Button_Global
                             textButton="Entrar"
                             color="pink"
-                            />
-                    </Box>
-                    <Box d="flex" flexDirection="column" onClick={() => setIsOpenRegister(prevState => prevState = true)}>
+                          />
+                        </Box>
+                        <Box d="flex" flexDirection="column" onClick={() => setIsOpenRegister(prevState => prevState = true)}>
 
-                        <Button_Global 
-                            textButton="Cadastrar"
-                            />
+                          <Button_Global 
+                              textButton="Cadastrar"
+                          />
 
-                    </Box>
+                        </Box>
+                      </>
+                    )}
 
                     <Login 
                       isOpen={isOpenLogin}

@@ -1,0 +1,191 @@
+.container{
+    width: 100%;
+    height: 100%;
+
+    padding: 10rem 10rem;
+
+    background-color: #F5F5F5;
+
+    h4{
+        font-size: 1.3rem;
+        font-family: "Ubuntu", sans-serif;
+        font-weight: bold;
+        color: #391159;
+
+        margin-bottom: 2rem;
+    }
+
+    @media screen and (max-width: 700px){
+        padding: 10rem 5rem;
+    }
+
+    @media screen and (max-width: 500px){
+        padding: 10rem 1rem;
+    }
+
+    .date{
+        width: 100%;
+        height: 100%;
+
+        .dateTitle{
+            width: 100%;
+
+            display: flex;
+            
+            .title{
+                font-size: 1rem;
+                font-family: "Ubuntu", sans-serif;
+                font-weight: bold;
+                color: #391159;
+                
+                margin-bottom: 1rem;
+            }
+        }
+
+        .boxFirst{
+            width: 100%;
+            height: 100%;
+
+            padding: 2rem 2rem;
+
+            background-color: #fff;
+
+            .profileAccount{
+                width: 100%;
+                height: 100%;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: 1rem 0;
+
+                border-bottom: 1px solid #ccc;
+
+                label{
+                    p:first-child{
+                        font-size: 1rem;
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: bold;
+                        color: #391159;
+                    }
+
+                    p:last-child{
+                        font-size: 1rem;
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 300;
+                        color: #391159;
+                    }
+                }
+            }
+        }
+    }
+    .security{
+        width: 100%;
+        height: 100%;
+        margin-top: 3rem;
+
+        .title{
+            font-size: 1rem;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: bold;
+            color: #391159;
+
+            margin-bottom: 1rem;
+        }
+
+        .boxFirst{
+            width: 100%;
+            height: 100%;
+
+            padding: 2rem 2rem;
+
+            background-color: #fff;
+
+            .profileAccount{
+                width: 100%;
+                height: 100%;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: 1rem 0;
+
+                border-bottom: 1px solid #ccc;
+
+                label{
+                    p:first-child{
+                        font-size: 1rem;
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: bold;
+                        color: #391159;
+                    }
+
+                    p:last-child{
+                        font-size: 1rem;
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 300;
+                        color: #391159;
+                    }
+                }
+            }
+            .profileAccountAdress{
+                width: 100%;
+                height: 100%;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: 1rem 0;
+
+                border-bottom: 1px solid #ccc;
+
+                label{
+                    .add{
+                        width: 100%;
+                        display: flex;
+                        .adress{
+                            font-size: 1rem;
+                            font-family: "Ubuntu", sans-serif;
+                            font-weight: bold;
+                            color: #391159;
+                            margin-bottom: 1rem;
+                            margin-right: 1rem;
+                        }
+                    }
+    
+                    p:nth-child(2){
+                        font-size: 1rem;
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 300;
+                        color: #391159;
+                    }
+                    p:nth-child(3){
+                        font-size: 0.7rem;
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 300;
+
+                        margin-top: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.noLogged{
+    width: 100%;
+
+    padding: 10rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    @media screen and (max-width: 600px){
+        padding: 10rem 3rem;
+    }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 
@@ -22,8 +22,13 @@ import {
   DrawerHeader, 
   DrawerBody, 
   DrawerFooter, 
-  Radio } 
+  Radio, 
+  Checkbox,
+  Alert,
+  AlertIcon} 
   from '@chakra-ui/react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { accountInfo, accountVerify, login } from '../../store/actions/auth.action';
 
 interface LoginProps{
     isOpen: boolean;
@@ -35,12 +40,28 @@ interface RegisterProps{
     onClose: () => void;
 }
 
+interface ErrorLoginProps{
+  error: {
+    ok: boolean;
+    message: string;
+  }
+}
+
 export const Login = ({ isOpen, onClose }: LoginProps) => {
 
   const validationSchema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
     password: yup.string().required("Senha obrigatória")
   });
+
+  const dispatch = useDispatch();
+  const { error }: ErrorLoginProps = useSelector((state: RootStateOrAny) => state.authReducer);
+  const [checkedRemember, setCheckedRemember] = useState(false);
+
+  useEffect(() => {
+    dispatch(accountVerify());
+  }, []);
+
   const {
     values,
     errors,
@@ -48,9 +69,15 @@ export const Login = ({ isOpen, onClose }: LoginProps) => {
     handleBlur,
     handleChange,
     handleSubmit,
-    isSubmitting
+    isSubmitting,
+    setSubmitting
   } = useFormik({
-    onSubmit: console.log,
+    onSubmit: async (e) => {
+      await dispatch(login(e, checkedRemember));
+      if(error.ok){
+        setSubmitting(false);
+      }
+    },
     validationSchema,
     initialValues: {
       email: "",
@@ -85,7 +112,18 @@ export const Login = ({ isOpen, onClose }: LoginProps) => {
             <DrawerBody>
 
               <FormControl mb={5}>
-                {errorValidationDate ? <FormHelperText color="red">{errorValidationDate}</FormHelperText> : ''}
+                {error.ok ?  
+                  <Alert status="error">
+                    <AlertIcon />
+                    {error.message}
+                  </Alert> 
+                  : ''}
+                {errorValidationDate ?  
+                  <Alert status="error">
+                    <AlertIcon />
+                    {errorValidationDate}
+                  </Alert> 
+                  : ''}
               </FormControl>
 
               <FormControl id="email">
@@ -113,6 +151,17 @@ export const Login = ({ isOpen, onClose }: LoginProps) => {
                 </InputGroup>
                   {touched.password && <FormHelperText>{errors.password}</FormHelperText>}
               </FormControl>
+
+              <Checkbox onChange={(value) => setCheckedRemember(value.target.checked)} isChecked={checkedRemember} mt={3} defaultIsChecked>Lembrar de mim</Checkbox>
+              <h4 style={{
+                fontSize: 14,
+                fontFamily: "Ubuntu",
+                marginTop: 20,
+                fontWeight: 200
+              }}>Esqueceu sua conta ? <a style={{
+                cursor: 'pointer',
+                color: "#432158"
+              }}>Clique aqui.</a></h4>
 
             </DrawerBody>
 

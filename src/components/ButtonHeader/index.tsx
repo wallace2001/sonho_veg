@@ -2,26 +2,43 @@ import { Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from '@c
 import { Box, Button } from '@chakra-ui/react';
 import { FaUserAlt } from 'react-icons/fa';
 import { RiArrowDropDownFill } from 'react-icons/ri';
-import React from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../store/actions/auth.action';
+
+interface AuthProps{
+    account: {
+        email: string;
+        name: string;
+        sex: string;
+        telphone: string;
+    }
+}
 
 export const MenuHeader = () => {
+    const router = useRouter();
+    
+    const dispatch = useDispatch();
+    const { account }: AuthProps = useSelector((state: RootStateOrAny) => state.authReducer);
+
     return (
         <Menu>
             <MenuButton as={Button} colorScheme="pink">
-                <Box d="flex" alignItems="center">
+                <Box w="100%" d="flex" justifyContent="space-between" alignItems="center">
                     <FaUserAlt color="#fff" />
-                    <p>Wallace</p>
+                    <p>{account.name.split(" ")[0]}</p>
                     <RiArrowDropDownFill size={35} color="#fff"/>
                 </Box>
             </MenuButton>
         <MenuList>
             <MenuGroup title="Perfil"style={{color: "black", fontWeight: "normal"}}>
-            <MenuItem>Meu Perfil</MenuItem>
-            <MenuItem>Compras </MenuItem>
+            <MenuItem onClick={() => router.push('/profile')}>Meu Perfil</MenuItem>
+            <MenuItem>Compras</MenuItem>
             </MenuGroup>
             <MenuDivider />
             <MenuGroup style={{color: "black", fontWeight: "normal"}} title="Conta">
-            <MenuItem>Sair</MenuItem>
+            <MenuItem onClick={() => dispatch(logout())}>Sair</MenuItem>
             </MenuGroup>
         </MenuList>
         </Menu>

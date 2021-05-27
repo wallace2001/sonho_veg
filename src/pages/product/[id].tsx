@@ -1,16 +1,31 @@
-import { Box } from '@chakra-ui/layout';
-import { Spinner } from '@chakra-ui/spinner';
-import { GetStaticPaths, GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
+import { Spinner } from '@chakra-ui/spinner';
+import { Box } from '@chakra-ui/layout';
 import styles from '../../../styles/product.module.scss';
 import { Header } from '../../components/Header';
 import { ProductSlider } from '../../components/ProductSlider';
 import { donuts } from '../../data/donuts';
 import { Footer } from '../../Footer';
+import { changeLoading } from '../../store/actions/loading.action';
+import { Loading } from '../../components/loading';
+import { changeMessage } from '../../store/actions/message.action';
+import { Notify } from '../../components/Notify';
+import { Alert } from '@chakra-ui/alert';
+import { useToast } from '@chakra-ui/toast';
+
+interface NotifyProps{
+    open: boolean;
+    time: number;
+    class: string;
+    message: string;
+}
 
 export default function Product({ id }){
     const [windowTam, setWindowTam] = useState<number>();
     const [loadingPage, setLoadingPage] = useState(true);
+    const toast = useToast()
 
     setTimeout(() => {
         setLoadingPage(false);
@@ -20,19 +35,21 @@ export default function Product({ id }){
       setWindowTam(window.innerWidth);
     },[]);
 
-    if(loadingPage){
+    const dispatch = useDispatch();
+    const loading = useSelector((state: RootStateOrAny) => state.loadingReducer);
+
+    useEffect(() => {
+        dispatch(changeLoading({open: true}));
+        setTimeout(() => {
+            dispatch(changeLoading({open: false}));
+        }, 2 * 1000);
+    }, []);
+
+    if(loading.open){
         return(
-            <Box w="100%" h="100vh" d="flex" alignItems="center" justifyContent="center">
-                <Spinner 
-                  thickness="4px"
-                  speed="0.65s"
-                  color="blue.500"
-                  size="xl"
-                  />
-            </Box>
+            <Loading />
         );
-    }
-  
+    }  
 
     return(
         <>
@@ -69,7 +86,16 @@ export default function Product({ id }){
                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lor</p>
                         <label>R$ 19,99</label>
                         <div>
-                            <button className={styles.buttonBuyMobile}>Comprar</button>
+                            <button 
+                                   onClick={() =>
+                                    toast({
+                                      description: "Produto adicionado ao carrinho.",
+                                      status: "success",
+                                      duration: 2 * 1000,
+                                      isClosable: true,
+                                    })
+                                  }
+                             className={styles.buttonBuyMobile}>Comprar</button>
                             <button className={styles.buttonAddCartMobile}>Adicionar ao carrinho</button>
                         </div>
                     </div>
