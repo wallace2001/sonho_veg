@@ -14,6 +14,7 @@ import { changeMessage } from '../../store/actions/message.action';
 import { Notify } from '../../components/Notify';
 import { Alert } from '@chakra-ui/alert';
 import { useToast } from '@chakra-ui/toast';
+import { accountVerify } from '../../store/actions/auth.action';
 
 interface NotifyProps{
     open: boolean;
@@ -36,7 +37,7 @@ export default function Product({ id }){
     },[]);
 
     const dispatch = useDispatch();
-    const loading = useSelector((state: RootStateOrAny) => state.loadingReducer);
+    const loading = useSelector((state: RootStateOrAny) => state.loadingReducer);;
 
     useEffect(() => {
         dispatch(changeLoading({open: true}));

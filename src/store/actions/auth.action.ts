@@ -66,9 +66,9 @@ export const logout = () => async (dispatch) => {
 }
 
 export const accountVerify = () => async (dispatch) => {
-    dispatch(changeLoading({open: true}));
+    // dispatch(changeLoading({open: true}));
     return await HttpAuth.get('/user').then(res => {
-        dispatch(changeLoading({open: false}));
+        // dispatch(changeLoading({open: false}));
         // console.log(res.data);
         dispatch(account({
             ok: res.data.ok,
