@@ -4,4 +4,5 @@ import rootReducer from './reduces/rootReducer';
 
 let middleware = [ReduxThunk];
 
+export type AppDispatch = typeof store.dispatch;
 export const store = createStore(rootReducer, applyMiddleware(...middleware));

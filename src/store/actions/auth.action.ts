@@ -1,4 +1,5 @@
 import { Http, HttpAuth } from "../../config/http";
+import { AppDispatch } from "../store";
 import { changeLoading } from "./loading.action";
 
 interface UserProps{
@@ -17,6 +18,11 @@ interface credentialsRegisterProps{
         telphone?: string;
         sex: string;
         cpf?: string;
+}
+
+interface credentialsProps{
+    email: string;
+    password: string;
 }
 
 export const actionTypes = {
@@ -52,7 +58,7 @@ export const status = (payload) => ({
     payload
 });
 
-export const logout = () => async (dispatch) => {
+export const logout = () => async (dispatch: AppDispatch) => {
     dispatch(changeLoading({open: true}));
     if(await localStorage.getItem("access_token")){
         await localStorage.removeItem("access_token");
@@ -65,10 +71,10 @@ export const logout = () => async (dispatch) => {
     
 }
 
-export const accountVerify = () => async (dispatch) => {
-    // dispatch(changeLoading({open: true}));
+export const accountVerify = () => async (dispatch: AppDispatch) => {
+    dispatch(changeLoading({open: true}));
     return await HttpAuth.get('/user').then(res => {
-        // dispatch(changeLoading({open: false}));
+        dispatch(changeLoading({open: false}));
         // console.log(res.data);
         dispatch(account({
             ok: res.data.ok,
@@ -83,7 +89,7 @@ export const accountVerify = () => async (dispatch) => {
     })
 }
 
-export const accountInfo = (state: UserProps) => dispatch => {
+export const accountInfo = (state: UserProps) => (dispatch: AppDispatch) => {
     dispatch(account({
         admin: state.admin,
         email: state.email,
@@ -93,7 +99,7 @@ export const accountInfo = (state: UserProps) => dispatch => {
     }));
 }
 
-export const setUserToken = (token: string, checked) => (dispatch: any) => {
+export const setUserToken = (token: string, checked: boolean) => (dispatch: AppDispatch) => {
 
     checked 
     ? localStorage.setItem('access_token', token) 
@@ -109,7 +115,7 @@ export const setUserToken = (token: string, checked) => (dispatch: any) => {
     dispatch(success(true));
 }
 
-export const login = (credentials, checked) => dispatch => {
+export const login = (credentials: credentialsProps, checked: boolean) => (dispatch) => {
     dispatch(changeLoading({
         open: true
     }));
@@ -151,7 +157,7 @@ export const login = (credentials, checked) => dispatch => {
     })
 }
 
-export const register = (credential: credentialsRegisterProps) => dispatch => {
+export const register = (credential: credentialsRegisterProps) => (dispatch) => {
     dispatch(changeLoading({
         open: true
     }))

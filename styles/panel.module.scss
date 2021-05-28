@@ -1,0 +1,149 @@
+.container{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+
+    background-color: #DBDEE9;
+
+    .header{
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        .left{
+            width: 16rem;
+        }
+
+        .right{
+            width: 100%;
+            .content{
+                width: 100%;
+                height: 100vh;
+
+                padding: 0 0 10rem 0;
+
+                overflow-y: auto;
+                .title{
+                    font-size: 1.4rem;
+                    padding: 2rem 7.3rem;
+                }
+                .statusViewers{
+                    width: 100%;
+                    display: flex;
+                    margin-top: 3rem;
+                    align-items: center;
+                    justify-content: space-around;
+                    flex-wrap: wrap;
+    
+                    .cardBox{
+                        width: 17rem;
+                        height: 10rem;
+                        padding: 1rem;
+    
+                        background-color: #fff;
+
+                        @media screen and (max-width: 1010px){
+                            margin-top: 1rem;
+                        }
+    
+                        p:first-child{
+                            font-family: "Roboto", sans-serif;
+                            font-weight: 700;
+                            font-size: 1rem;
+                            color: #7B7B7B;
+                        }
+    
+                        div{
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+    
+                            margin-top: 2rem;
+    
+                            h4{
+                                font-size: 2rem;
+                                color: #7B7B7B;
+                                font-family: "Roboto", sans-serif;
+                                font-weight: 700;
+                            }
+    
+                            .percentUp{
+                                display: flex;
+                                align-items: center;
+                                font-size: 1.1rem;
+                                color: #56C102
+                            }
+    
+                            .percentDown{
+                                display: flex;
+                                align-items: center;
+                                font-size: 1.1rem;
+                                color: #C10202
+                            }
+                        }
+                    }
+                }
+                .statusPayments{
+                    width: 100%;
+                    display: flex;
+                    margin-top: 5rem;
+                    align-items: center;
+                    justify-content: space-around;
+                    flex-wrap: wrap;
+    
+                    .cardBox{
+                        width: 17rem;
+                        height: 10rem;
+                        padding: 1rem;
+    
+                        background-color: #fff;
+
+                        @media screen and (max-width: 1010px){
+                            margin-top: 1rem;
+                        }
+    
+                        p:first-child{
+                            font-family: "Roboto", sans-serif;
+                            font-weight: 700;
+                            font-size: 1rem;
+                            color: #7B7B7B;
+                        }
+    
+                        div{
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+    
+                            margin-top: 2rem;
+    
+                            h4{
+                                font-size: 2rem;
+                                color: #7B7B7B;
+                                font-family: "Roboto", sans-serif;
+                                font-weight: 700;
+                            }
+    
+                            .percentUp{
+                                display: flex;
+                                align-items: center;
+                                font-size: 1.1rem;
+                                color: #56C102
+                            }
+    
+                            .percentDown{
+                                display: flex;
+                                align-items: center;
+                                font-size: 1.1rem;
+                                color: #C10202
+                            }
+                        }
+                    }
+                }
+            }
+
+        }  
+
+    }
+}

@@ -2,7 +2,7 @@ import { Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from '@c
 import { Box, Button } from '@chakra-ui/react';
 import { FaUserAlt } from 'react-icons/fa';
 import { RiArrowDropDownFill } from 'react-icons/ri';
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/actions/auth.action';
@@ -23,6 +23,8 @@ export const MenuHeader = () => {
     const dispatch = useDispatch();
     const { account }: AuthProps = useSelector((state: RootStateOrAny) => state.authReducer);
 
+    console.log(account.admin);
+
     return (
         <Menu>
             <MenuButton as={Button} colorScheme="pink">
@@ -41,7 +43,7 @@ export const MenuHeader = () => {
                 <>
                 <MenuDivider />
                 <MenuGroup style={{color: "black", fontWeight: "normal"}} title="Administrador">
-                    <MenuItem>Admin</MenuItem>
+                    <MenuItem onClick={() => router.push('/panel_controller')}>Admin</MenuItem>
                 </MenuGroup>
                 </>
             ) : null}
