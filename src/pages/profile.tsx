@@ -1,7 +1,7 @@
 import { BiDotsVertical, BiPlusCircle } from 'react-icons/bi';
 import { AiFillEdit } from 'react-icons/ai';
 import { Header } from "../components/Header";
-import { Footer } from "../Footer";
+import { Footer } from "../components/Footer";
 import styles from '../../styles/profile.module.scss';
 import { useState } from 'react';
 import { ModalEditProfile } from '../components/modalEditProfile';

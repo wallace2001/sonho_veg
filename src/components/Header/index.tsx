@@ -1,5 +1,5 @@
 import { Box, Text } from '@chakra-ui/layout';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaUserAlt } from 'react-icons/fa';
 import { IoMdCart } from 'react-icons/io';
 import styles from './style.module.scss';
@@ -20,14 +20,22 @@ interface CartProps{
 export const Header = (props: CartProps) => {
     const [isOpenRegister, setIsOpenRegister] = useState(false);
     const [isOpenLogin, setIsOpenLogin] = useState(false);
-    const [isOpenCart, setIsOpenCart] = useState(false);
+    const [lengthCart, setLengthCart] = useState<number>(0);
 
     const { account } = useSelector((state: RootStateOrAny) => state.authReducer);
     const router = useRouter();
 
-    const onCloseCart = () => {
-        setIsOpenCart(prevState => prevState = false);
+    useEffect(() => {
+      const func = async() => {
+        const cart: Array<[]> = await JSON.parse(localStorage.getItem("cart_list"));
+        const tamCart = cart?.length;
+
+        setLengthCart(prevState => prevState = tamCart);
+
       }
+
+      func();
+    }, []);
 
     return (
         <div className={styles.background}>
@@ -100,7 +108,7 @@ export const Header = (props: CartProps) => {
                 </div>
 
                 <div className={styles.cartValue} onClick={() => router.push('/cart')}> 
-                    <p>1</p>
+                    <p>{lengthCart}</p>
                 </div>
               </>
           )}

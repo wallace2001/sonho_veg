@@ -12,6 +12,7 @@ import { HeaderMenu } from "../../data/header";
 import { Button_Global } from '../Button';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { MenuHeader } from '../ButtonHeader';
+import { useRouter } from 'next/router';
 
 interface AuthProps{
   account: {
@@ -24,6 +25,7 @@ export const MenuIcon = () => {
     const [isOpenRegister, setIsOpenRegister] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure()
     const firstField = useRef()
+    const router = useRouter();
 
     const { account }: AuthProps = useSelector((state: RootStateOrAny) => state.authReducer);
       
@@ -49,7 +51,7 @@ export const MenuIcon = () => {
                   <Stack spacing="24px">
                     {HeaderMenu.map((item, index) => {
                         return(
-                            <Button key={index}>
+                            <Button onClick={() => router.push(item.from)} key={index}>
                                 <Text>{item.name}</Text>
                             </Button>
                         );

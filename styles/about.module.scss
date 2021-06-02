@@ -1,0 +1,200 @@
+.container{
+    width: 100%;
+    height: 100%;
+
+    padding: 10rem 15rem 5rem 15rem;
+
+    @media screen and (max-width: 1300px){
+        padding: 10rem 10rem 5rem 10rem;
+    }
+    @media screen and (max-width: 1000px){
+        padding: 10rem 7rem 5rem 7rem;
+    }
+    @media screen and (max-width: 540px){
+        padding: 10rem 3rem 5rem 3rem;
+    }
+
+    .about{
+        width: 100%;
+        height: auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media screen and (max-width: 860px){
+            flex-direction: column;
+        }
+
+        label{
+            p:first-child{
+                font-size: 1.6rem;
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: bold;
+                color: #621A52
+            }
+
+            p:last-child{
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: normal;
+                margin-top: 1rem;
+                color: #3F1449;
+            }
+        }
+
+        img{
+            width: 60%;
+            height: 60%;
+
+            @media screen and (max-width: 860px){
+                width: 90%;
+                height: 90%;
+            }
+        }
+    }
+    .location{
+        width: 100%;
+        height: auto;
+
+        margin-top: 5rem;
+
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+
+        @media screen and (max-width: 860px){
+            flex-direction: column;
+        }
+
+        label{
+            p:first-child{
+                font-size: 1.6rem;
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: bold;
+                color: #621A52
+            }
+
+            p:last-child{
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: normal;
+                color: #3F1449;
+            }
+
+            div{
+                width: 100%;
+                height: 10rem;
+
+                margin-top: 4rem;
+
+                background-color: green;
+
+                @media screen and (max-width: 860px){
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+
+        img{
+            width: 50%;
+            height: 50%;
+
+            @media screen and (max-width: 860px){
+                width: 90%;
+                height: 90%;
+            }
+        }
+    }
+}
+
+.team{
+    width: 100%;
+    height: 100%;
+
+    padding: 2rem 15rem 5rem 15rem;
+    background-color: #361855;
+
+    border-radius: 0 10rem 0 10rem;
+
+    @media screen and (max-width: 1300px){
+        padding: 2rem 8rem 5rem 8rem;
+    }
+    @media screen and (max-width: 1000px){
+        padding: 2rem 4rem 5rem 4rem;
+    }
+    @media screen and (max-width: 540px){
+        padding: 2rem 2rem 5rem 2rem;
+    }
+    
+    h1{
+        font-size: 1.5rem;
+        color: #fff;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+
+        text-align: center;
+    }
+
+    img{
+        width: 7rem;
+        height: 6rem;
+        object-fit: contain;
+
+        position: relative;
+        top: -50px;
+        left: -230px;
+    }
+
+    .teamInfo{
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        // @media screen and (max-width: 940px){
+        //     flex-wrap: wrap;
+        // }
+
+        .box{
+            width: auto;
+            height: 100%;
+
+            padding: 3rem;
+
+            .first{
+                width: 100%;
+                display: flex;
+                div:first-child{
+                    width: 50px;
+                    height: 50px;
+    
+                    background-color: #fff;
+                    border-radius: 50%;
+                }
+
+                div:last-child{
+                    margin-left: 1rem;
+                    p:first-child{
+                        font-size: 1.3rem;
+                        font-family: 'Ubuntu', sans-serif;
+                        font-weight: bold;
+                        color: #E52FE9;
+                    }
+    
+                    p:last-child{
+                        color: #fff;
+                    }
+                }
+            }
+
+            .description{
+                margin-top: 1rem;
+                width: 15rem;
+                font-size: 0.9rem;
+                color: #fff;
+            }
+        }
+
+    }
+}

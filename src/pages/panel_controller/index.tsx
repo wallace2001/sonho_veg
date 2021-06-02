@@ -3,6 +3,7 @@ import styles from '../../../styles/panel.module.scss';
 import { HeaderAdmin } from '../../components/HeaderAdmin';
 import { MenuLeft } from '../../components/MenuLeft';
 import { BsArrowUp, BsArrowDown } from 'react-icons/bs';
+import { Graphics } from '../../components/Graphics';
 
 export default function Home(){
 
@@ -93,6 +94,20 @@ export default function Home(){
                                 );
                             })}
                         </div>
+
+                        <Graphics title="Gráficos de visualizações" />
+                        <Graphics title="Gráficos de ganhos" />
+                        <Graphics title="Todas as contas" />
+                        <Graphics title="Contas não verificadas" />
+
+                        {/* <div className={styles.contentGraphicsViewer}>
+                            <h4>Gráficos de visualizações</h4>
+                        </div> */}
+                        {/* <footer>
+                            <div>
+                                <p>©Copyright - todos os direitos autorais reservados.</p>
+                            </div>
+                        </footer> */}
                     </div>
                 </div>
             </div>

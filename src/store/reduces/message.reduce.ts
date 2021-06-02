@@ -6,7 +6,7 @@ const initialState = {
     message: 'Dados atualizados'
 }
 
-export default (state = initialState, { type, payload }) => {
+export const MessageReducer = (state = initialState, { type, payload }) => {
     console.log(payload);
     switch (type) {
 

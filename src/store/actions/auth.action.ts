@@ -91,6 +91,7 @@ export const accountVerify = () => async (dispatch: AppDispatch) => {
 
 export const accountInfo = (state: UserProps) => (dispatch: AppDispatch) => {
     dispatch(account({
+        ok: true,
         admin: state.admin,
         email: state.email,
         name: state.name,

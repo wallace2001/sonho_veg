@@ -29,6 +29,7 @@ import {
   from '@chakra-ui/react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { accountInfo, accountVerify, login, register } from '../../store/actions/auth.action';
+import { useRouter } from 'next/router';
 
 interface LoginProps{
     isOpen: boolean;
@@ -60,7 +61,7 @@ export const Login = ({ isOpen, onClose }: LoginProps) => {
 
   useEffect(() => {
     dispatch(accountVerify());
-  }, []);
+  }, [dispatch]);
 
   const {
     values,
@@ -185,6 +186,7 @@ export const Register = ({ isOpen, onClose }: RegisterProps) => {
   const [errorValidationDate, setErrorValidationDate] = useState<string>('');
   const dispatch = useDispatch();
   const { status, error } = useSelector((state: RootStateOrAny) => state.authReducer);
+  const router = useRouter();
 
   const validationSchema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),

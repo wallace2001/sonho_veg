@@ -1,12 +1,15 @@
 import { combineReducers } from 'redux';
-import loadingReducer from './loading.reduce';
-import notifyRedycer from './message.reduce';
-import authReducer from './auth.reduce';
+import { loadingReducer } from './loading.reduce';
+import { MessageReducer } from './message.reduce';
+import { authReducer } from './auth.reduce';
+import { productsReducer } from './products.reduce';
+import { notifyReducer } from './notify.reduce';
 
 const rootReducer = combineReducers({
     loadingReducer,
-    notifyRedycer,
-    authReducer
+    authReducer,
+    productsReducer,
+    notifyReducer
 });
 
 export default rootReducer;

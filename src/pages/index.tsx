@@ -7,9 +7,23 @@ import { donuts } from '../data/donuts';
 import { Information } from '../components/Information';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { Header } from '../components/Header';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { indexProduct } from '../store/actions/products.action';
+import { Toast } from '../components/Toast';
+
 
 export default function Home() {
   const [windowTam, setWindowTam] = useState<number>();
+
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(indexProduct());
+  }, [dispatch]);
+  
+  const { products } = useSelector((state: RootStateOrAny) => state.productsReducer);
+
+  console.log(products[0]);
 
   useEffect(() => {
     setWindowTam(window.innerWidth);
@@ -22,7 +36,7 @@ export default function Home() {
           <div style={{marginTop: '4rem'}}>
             <ProductSlider 
               title="MilkShakes"
-              products={milkshakes}
+              products={products[0]?.milkshake}
               quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
               colorContent="rgb(250, 243, 255)"
               colorAdd="#D88CFC"
@@ -46,7 +60,7 @@ export default function Home() {
             <div style={{marginTop: '4rem'}}>
               <ProductSlider 
                 title="Donuts"
-                products={donuts}
+                products={products[0]?.donut}
                 quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
                 colorContent="#FFFFF3"
                 colorAdd="#FFFF00"
@@ -58,7 +72,7 @@ export default function Home() {
               <div>
                 <ProductSlider 
                   title="Bolos"
-                  products={milkshakes}
+                  products={products[0]?.cake}
                   quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
                   colorContent="rgb(250, 243, 255)"
                   colorAdd="#D88CFC"

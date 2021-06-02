@@ -1,0 +1,93 @@
+// .requestBox{
+//     width: 100%;
+//     height: 100%;
+//     margin-top: 3rem;
+
+    .titleRequest{
+        font-family: "Ubuntu", sans-serif;
+        font-weight: 400;
+        font-size: 1.2rem;
+        color: #4A4A4A;
+        // padding-left: 2rem;
+        margin-top: 2rem;
+    }
+
+    .box{
+        width: 100%;
+        height: auto;
+
+        padding: 1rem 2rem;
+
+        display: flex;
+        justify-content: space-between;
+        // align-items: center;
+        flex-direction: row;
+
+        background-color: #fff;
+
+        .left{
+            flex: 3;
+            h5{
+                font-family: "Ubuntu", sans-serif;
+                font-weight: 400;
+                font-size: 1rem;
+                color: #4A4A4A
+            }
+            label{
+                
+                h4{
+                    font-family: "Ubuntu", sans-serif;
+                    font-weight: 400;
+                    font-size: 1.1rem;
+                    color: #4A4A4A
+                }
+
+                p{
+                    font-family: "Ubuntu", sans-serif;
+                    font-weight: 400;
+                    font-size: 0.9rem;
+                    color: #4A4A4A
+                }
+            }
+        }
+
+        .mid{
+            flex: 2;
+            label{
+                
+                h4{
+                    font-family: "Ubuntu", sans-serif;
+                    font-weight: 400;
+                    font-size: 1.1rem;
+                    color: #4A4A4A
+                }
+
+                p{
+                    font-family: "Ubuntu", sans-serif;
+                    font-weight: 400;
+                    font-size: 0.9rem;
+                    color: #4A4A4A
+                }
+            }
+        }
+
+        .right{
+            flex: 1;
+            label{
+                
+                h4{
+                    font-family: "Ubuntu", sans-serif;
+                    font-weight: 400;
+                    font-size: 1.1rem;
+                    color: #4A4A4A
+                }
+
+                p{
+                    font-family: "Ubuntu", sans-serif;
+                    font-weight: 400;
+                    font-size: 0.9rem;
+                    color: #4A4A4A
+                }
+            }
+        }
+    }

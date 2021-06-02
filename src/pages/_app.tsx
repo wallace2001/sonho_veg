@@ -6,6 +6,7 @@ import '../../styles/globals.scss';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import { Loading } from '../components/loading';
+import { Toast } from '../components/Toast';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }) {
             <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
           </Head>
           <Loading />
+          <Toast />
           <Component {...pageProps} />
         </ChakraProvider>
       </Provider>

@@ -21,7 +21,7 @@ const initialState = {
     status: false
 }
 
-export default (state = initialState, { type, payload }) => {
+export const authReducer = (state = initialState, { type, payload }) => {
     switch (type) {
 
     case actionTypes.CHANGE:

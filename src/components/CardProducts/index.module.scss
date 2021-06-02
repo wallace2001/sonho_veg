@@ -1,0 +1,66 @@
+.cardProducts{
+    h1{
+        font-size: 2.4rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+    }
+
+    img{
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+    }
+
+    p{
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+    }
+
+    h3{
+        font-size: 2.6rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        margin-top: 1rem;
+    }
+}
+.cardContent{
+    width: 20%;
+    @media screen and (max-width: 1600px){
+        width: 30%;
+    }
+    @media screen and (max-width: 1492px){
+        width: 35%;
+    }
+    @media screen and (max-width: 1290px){
+        width: 50%;
+    }
+    @media screen and (max-width: 700px){
+        width: 70%;
+    }
+    @media screen and (max-width: 500px){
+        width: 90%;
+    }
+}
+.edit{
+    width: 3rem;
+    height: 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    background-color: rgb(16, 92, 255);
+}
+.delete{
+    width: 3rem;
+    height: 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    background-color: rgb(255, 0, 0);
+}

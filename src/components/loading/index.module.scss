@@ -1,0 +1,17 @@
+.open{
+    width: 100%;
+    height: 100vh;
+
+    position: fixed;
+    background-color: #fff;
+
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close{
+    display: none;
+}
