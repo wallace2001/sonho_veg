@@ -98,12 +98,16 @@ export const createProduct = ({content}: PropsContent) => (dispatch: AppDispatch
     });
 }
 
-export const deleteProduct = (id: string) => (dispatch: AppDispatch) => {
+export const deleteProduct = (id: string) => (dispatch) => {
     dispatch(changeLoading({open: true}));
     HttpAuth.delete(`products_delete/${id}`).then(res => {
         dispatch(changeLoading({open: false}));
-        if(!res.data.error){
-            dispatch(change(true));
+        console.log(res);
+        if(!res){
+            dispatch(changeLoading({open: true}));
+        }
+        else if(!res.data.error){
+            dispatch(productsAll());
             dispatch(changeNotify({
                 open: true,
                 title: "Produto deletado com sucesso"
@@ -114,7 +118,7 @@ export const deleteProduct = (id: string) => (dispatch: AppDispatch) => {
         }else{
             dispatch(changeNotify({
                 open: true,
-                title: res.data.error
+                title:"Erro ao deletar produto"
             }));
             setTimeout(() => {
                 dispatch(changeNotify({open: false}));

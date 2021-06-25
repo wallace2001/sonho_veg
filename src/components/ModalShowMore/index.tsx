@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from '@chakra-ui/react'
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from '@chakra-ui/modal'
 import styles from './index.module.scss';
 import format from 'date-fns/format';
 

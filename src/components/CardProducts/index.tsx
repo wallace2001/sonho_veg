@@ -5,6 +5,8 @@ import { AiFillEdit } from 'react-icons/ai';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { deleteProduct } from '../../store/actions/products.action';
+import { useState } from 'react';
+import { ModalEdit } from '../ModalEditProduct';
 
 interface Props{
     data: {
@@ -18,12 +20,33 @@ interface Props{
     }
 }
 
+interface PropsProduct{
+    id: string;
+    name: string;
+    description: string;
+    calories: string;
+    price: string;
+    category: string;
+    image: string;
+}
+
 export const CardProducts = ({data}: Props) => {
 
+    const [open, setOpen] = useState<boolean>(false);
+    const [item, setItem] = useState<PropsProduct>();
     const dispatch = useDispatch();
     const handleDelete = (id: string) => {
         dispatch(deleteProduct(id));
     };
+
+    const onClose = () => {
+        setOpen(prevState => !prevState);
+    }
+
+    const handleEdit = (data: PropsProduct) => {
+        setItem(data);
+        setOpen(prevState => true);
+    }
 
     return (
         <Box
@@ -52,9 +75,10 @@ export const CardProducts = ({data}: Props) => {
                     <h3>{data.price}</h3>
             </Box>
             <Box w="100%" mt={5} d="flex" justifyContent="space-evenly">
-                <button className={styles.edit}><AiFillEdit color="#fff" size={16} /></button>
+                <button className={styles.edit} onClick={() => handleEdit(data)}><AiFillEdit color="#fff" size={16} /></button>
                 <button className={styles.delete} onClick={() => handleDelete(data.id)}><BsFillTrashFill color="#fff" size={16} /></button>
             </Box>
+            <ModalEdit open={open} onClose={onClose} item={item} />
         </Box>
     )
 }

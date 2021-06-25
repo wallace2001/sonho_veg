@@ -69,13 +69,13 @@ export default function ShowProducts(){
 
                             <Box w="100%" h="auto" p="1rem 0 10rem 0" d="flex" flexDirection="row" flexWrap="wrap" justifyContent="flex-start">
                                 {productsFiltered.length !== 0 ? (
-                                    productsFiltered.map((item, index) => {
+                                    productsFiltered?.map((item, index) => {
                                         return(
                                             <CardProducts key={index} data={item} />
                                         );
                                     })
                                 ) : (
-                                    products.map((item, index) => {
+                                    products?.map((item, index) => {
                                         return(
                                             <CardProducts key={index} data={item} />
                                         );
