@@ -31,7 +31,7 @@
             padding: 2rem 0;
             .slider{
                 width: 15rem;
-                height: auto;
+                height: 100%;
                 
                 border-radius: 10px;
                 padding: 1rem;
@@ -47,22 +47,34 @@
 
                 
                 display: flex;
-                justify-content: space-between;
+                justify-content: space-around;
                 align-items: center;
                 flex-direction: column;
                 
-                h2{
-                    font-family: Roboto;
-                    font-style: italic;
-                    font-weight: 100;
-                    font-size: 35px;
-                    line-height: 41px;
+                h1{
+                    font-size: 1.3rem;
+                    font-family: 'Ubuntu', sans-serif;
+                    font-weight: normal;
+                    text-align: center;
+                    margin-bottom: 1rem;
                 }
-                
+    
                 img{
-                    width: 60%;
-                    height: 60%;
-                    object-fit: cover;
+                    width: 50%;
+                    height: 50%;
+                    object-fit: contain;
+                    margin: 0 auto;
+                }
+    
+                h2{
+                    font-size: 1.8rem;
+                    font-family: 'Ubuntu', sans-serif;
+                    font-weight: normal;
+                    text-align: center;
+    
+                    color: var(--color-text-productslider);
+    
+                    // padding: 2rem;
                 }
                 
                 .boxSlider{
@@ -104,7 +116,7 @@
                     align-items: center;
                     justify-content: center;
                     
-                    background-color: #D88CFC;
+                    background-color: var(--color-info);
                 }
                 
                 button:last-child{
@@ -118,14 +130,14 @@
                     align-items: center;
                     justify-content: center;
                     
-                    background-color: #FEE875;
+                    background-color: var(--color-add);
                     
                     
                     &:nth-child(0){
                         transform: translate(90deg);
-                        color: aqua;
+                        color: #00ffff;
                         
-                        background-color: bisque;
+                        background-color: #ffe4c4;
                     }
                 }
             }

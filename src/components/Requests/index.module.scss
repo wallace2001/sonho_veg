@@ -7,7 +7,7 @@
         font-family: "Ubuntu", sans-serif;
         font-weight: 400;
         font-size: 1.2rem;
-        color: #4A4A4A;
+        color: var(--color-title-request);
         // padding-left: 2rem;
         margin-top: 2rem;
     }
@@ -19,75 +19,191 @@
         padding: 1rem 2rem;
 
         display: flex;
+        overflow-x: auto;
         justify-content: space-between;
         // align-items: center;
-        flex-direction: row;
+        flex-direction: column;
 
-        background-color: #fff;
+        background-color: var(--color-white);
 
-        .left{
-            flex: 3;
-            h5{
-                font-family: "Ubuntu", sans-serif;
-                font-weight: 400;
-                font-size: 1rem;
-                color: #4A4A4A
-            }
-            label{
-                
-                h4{
+        .wrap{
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: row;
+
+            .left{
+                flex: 3;
+                h5{
                     font-family: "Ubuntu", sans-serif;
                     font-weight: 400;
-                    font-size: 1.1rem;
-                    color: #4A4A4A
+                    font-size: 1rem;
+                    color: var(--color-title-request);
                 }
-
-                p{
-                    font-family: "Ubuntu", sans-serif;
-                    font-weight: 400;
-                    font-size: 0.9rem;
-                    color: #4A4A4A
-                }
-            }
-        }
-
-        .mid{
-            flex: 2;
-            label{
-                
-                h4{
-                    font-family: "Ubuntu", sans-serif;
-                    font-weight: 400;
-                    font-size: 1.1rem;
-                    color: #4A4A4A
-                }
-
-                p{
-                    font-family: "Ubuntu", sans-serif;
-                    font-weight: 400;
-                    font-size: 0.9rem;
-                    color: #4A4A4A
+                label{
+                    
+                    h4{
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 400;
+                        font-size: 1.1rem;
+                        color: var(--color-title-request);
+                    }
+    
+                    p{
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 400;
+                        font-size: 0.9rem;
+                        color: var(--color-title-request);
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
                 }
             }
-        }
-
-        .right{
-            flex: 1;
-            label{
-                
-                h4{
-                    font-family: "Ubuntu", sans-serif;
-                    font-weight: 400;
-                    font-size: 1.1rem;
-                    color: #4A4A4A
+    
+            .mid{
+                flex: 2;
+                padding: 0 2rem;
+                label{
+                    
+                    h4{
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 400;
+                        font-size: 1.1rem;
+                        color: var(--color-title-request);
+                    }
+    
+                    p{
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 400;
+                        font-size: 0.9rem;
+                        color: var(--color-title-request);
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
                 }
-
-                p{
-                    font-family: "Ubuntu", sans-serif;
-                    font-weight: 400;
-                    font-size: 0.9rem;
-                    color: #4A4A4A
+            }
+    
+            .right{
+                flex: 1;
+                label{
+                    
+                    h4{
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 400;
+                        font-size: 1.1rem;
+                        color: var(--color-title-request);
+                    }
+    
+                    p{
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 400;
+                        font-size: 0.9rem;
+                        color: var(--color-title-request);
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
                 }
             }
         }
     }
+
+.status{
+    width: 50%;
+    height: auto;
+    background-color: var(--color-background-status);
+
+    transition: width 0.4s;
+    transition: height 0.4s;
+
+    margin: 0 auto;
+
+    @media screen and (max-width: 1200px){
+        width: 80%;
+    }
+    @media screen and (max-width: 600px){
+        width: 100%;
+    }
+
+    h2{
+        text-align: center;
+        font-size: 1.1rem;
+        padding: 1rem;
+    }
+
+    .content{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+
+        transition: flex-direction 0.4s;
+
+        padding: 0 2rem 2rem 2rem;
+
+        .groupRdio{
+            @media screen and (max-width: 500px){
+                flex-direction: column;
+            }
+        }
+    }
+}
+.statusSub{
+    width: 50%;
+    height: auto;
+    background-color: var(--color-background-status);
+    display: none;
+
+    transition: width 0.4s;
+    transition: height 0.4s;
+
+    margin: 0 auto;
+
+    @media screen and (max-width: 1200px){
+        width: 80%;
+    }
+    @media screen and (max-width: 600px){
+        width: 100%;
+    }
+
+    h2{
+        text-align: center;
+        font-size: 1.1rem;
+        padding: 1rem;
+    }
+
+    .content{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+
+        transition: flex-direction 0.4s;
+
+        padding: 0 2rem 2rem 2rem;
+
+        .groupRdio{
+            @media screen and (max-width: 500px){
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+.boxRadio{
+    width: 100%;
+    transition: width 0.4s;
+    @media screen and (max-width: 500px){
+        width: 15rem;
+    }
+}
+
+.container:last-child{
+    padding-bottom: 8rem;
+}

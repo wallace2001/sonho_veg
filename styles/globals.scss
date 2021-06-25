@@ -12,6 +12,79 @@ body {
   --color-hover-header: #EA8DF9;
   --color-background-cart: #ECECEC;
   --color-button-whatsapp: #59CF22;
+
+  --color-background-team: #361855;
+  --color-text-team: #E52FE9;
+
+  // SCSS DA PÁGINA ABOUT
+  --color-title-about: #621A52;
+  --color-subtitle-about: #3F1449;
+
+  //SCSS DA PÁGINA CONTACT
+  --color-title: #621A52;
+  --color-text: #3F1449;
+
+  //SCSS DO CARRINHO
+  --color-text-warning: #FAFF00;
+  --color-button-delete: #FC1B1B;
+  --color-button-pay: #432158;
+
+  //SCSS DA PÁGINA HOME
+  --color-background-totalWallpaper: rgba(255,255,255, .94);
+  --color-background-products-main: rgba(247, 236, 198, 0.96);
+  --color-background-gray: rgba(255, 255, 243, .5);
+  --color-line: rgba(0,0,0,.1);
+
+  //SCSS DO PAINEL DE CONTROLE
+  --color-background-container: #DBDEE9;
+  --color-text: #7B7B7B;
+  --color-up: #56C102;
+  --color-down: #C10202;
+
+  //SCSS DA PÁGINA DE APROVAÇÃO DE PAGAMENTO
+  --color-label-id: #C200AF;
+
+  //SCSS DAS COMPRAS
+  --color-title-payment:rgb(82, 82, 82);
+
+  //SCSS DO PRODUTO
+  --color-label-price: #422361;
+  --color-button-buy: #331F46;
+  --color-title-product: #422361;
+
+  //SCSS DO PERFIL
+  --color-text-profile: #391159;
+  --color-background-profile: #F5F5F5;
+
+  //SCSS DO COMPONENTE CARDPRODUCTS
+  --color-button-edit: #105cff;
+  --color-button-delete: #ff0000;
+
+  //SCSS DO COMPONENTE HEADER
+  --color-background-left: rgba(100,100,300);
+  --color-background-inside: rgba(254, 223, 163, .90);
+
+  //SCSS DO COMPONENTE LOGINANDREGISTER
+  --color-backgorund-login: #F4EEE2;
+
+  //SCSS DO COMPONENTE MENULEFT
+  --color-background-menuleft: #121229;
+  --color-text-strong: #EB03FF;
+  --color-button-menuleft: #EFEFEF;
+
+  //SCSS DO COMPONENTE PRODUCTSLIDER
+  --color-text-productslider: #878787;
+  --color-info: #D88CFC;
+  --color-add: #FEE875;
+
+  //SCSS DO COMPONENTE REQUEST
+  --color-title-request: #4A4A4A;
+  --color-background-status: rgba(255,255,255, .4);
+
+
+  --color-gray: #ccc;
+  --color-white: #fff;
+  --color-black: #000;
 }
 
 @media (max-width: 1080px){

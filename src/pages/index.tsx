@@ -1,15 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ProductSlider } from '../components/ProductSlider';
 import styles from '../../styles/Home.module.scss';
-import { milkshakes } from '../data/milkshakeData';
-import { donuts } from '../data/donuts';
 import { Information } from '../components/Information';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { Header } from '../components/Header';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { indexProduct } from '../store/actions/products.action';
-import { Toast } from '../components/Toast';
+import { indexProduct, productsAll } from '../store/actions/products.action';
+import {ProductSliderNew} from '../components/ProductSliderNew';
 
 
 export default function Home() {
@@ -23,20 +21,27 @@ export default function Home() {
   
   const { products } = useSelector((state: RootStateOrAny) => state.productsReducer);
 
-  console.log(products[0]);
-
   useEffect(() => {
     setWindowTam(window.innerWidth);
   },[]);
+
+  console.log(products);
 
   return (
     <div className={styles.totalBackground}>
       <div className={styles.totalWallpaper}>
         <Header aleradyCart={true} />
           <div style={{marginTop: '4rem'}}>
+            {/* <ProductSliderNew 
+              title="MilkShake" 
+              products={products?.milkshake} 
+              colorAdd="#D88CFC"
+              colorInfo="#FEE875"
+              colorContent="rgb(250, 243, 255)"
+              /> */}
             <ProductSlider 
               title="MilkShakes"
-              products={products[0]?.milkshake}
+              products={products?.milkshake}
               quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
               colorContent="rgb(250, 243, 255)"
               colorAdd="#D88CFC"
@@ -58,26 +63,26 @@ export default function Home() {
           </div>
 
             <div style={{marginTop: '4rem'}}>
-              <ProductSlider 
-                title="Donuts"
-                products={products[0]?.donut}
-                quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
-                colorContent="#FFFFF3"
-                colorAdd="#FFFF00"
-                colorInfo="#D88CFC"
-              />
+            <ProductSlider 
+              title="Donuts"
+              products={products?.donut}
+              quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
+              colorContent="rgb(250, 243, 255)"
+              colorAdd="#D88CFC"
+              colorInfo="#FEE875"
+            />
             </div>
 
             <div className={styles.three_product} style={{marginTop: '4rem'}}>
               <div>
-                <ProductSlider 
-                  title="Bolos"
-                  products={products[0]?.cake}
-                  quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
-                  colorContent="rgb(250, 243, 255)"
-                  colorAdd="#D88CFC"
-                  colorInfo="#FEE875"
-                  />
+              <ProductSlider 
+              title="Bolos"
+              products={products?.cake}
+              quantitySlider={windowTam <= 1240 ? windowTam >= 683 ? 2 : 1 : 4}
+              colorContent="rgb(250, 243, 255)"
+              colorAdd="#D88CFC"
+              colorInfo="#FEE875"
+            />
               </div>
             </div>
 
@@ -85,6 +90,7 @@ export default function Home() {
               <Information 
                   buttonText="Entre em contato"
                   image="/contact.svg"
+                  buttonRoute="/contact"
                   description="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to"
                   title="Entre em contato"
                 />
@@ -95,7 +101,8 @@ export default function Home() {
             <div className={styles.containerContact}>
               <Information 
                 title="Sobre a gente"
-                buttonText="Entre em contato"
+                buttonText="Ver mais"
+                buttonRoute="/about"
                 image="/about.svg"
                 reverse={true}
                 description="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to"

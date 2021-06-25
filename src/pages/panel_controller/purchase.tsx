@@ -5,6 +5,7 @@ import { MenuLeft } from '../../components/MenuLeft';
 import { Select } from '@chakra-ui/select';
 import { Box, Text } from '@chakra-ui/layout';
 import { FormControl, FormLabel } from '@chakra-ui/form-control';
+import { GetServerSideProps } from 'next';
 
 export default function SendEmail(){
     return(
@@ -17,7 +18,7 @@ export default function SendEmail(){
                     <HeaderAdmin />
                     <div className={styles.content}>
                         <h4 className={styles.title}>Compras</h4>
-                        <Box w="100%" h="100%" p="0 7rem 1rem 7rem">
+                        <Box w="100%" h="100%" p="0 7rem 1rem 7rem" className={styles.cardPayment}>
                             <FormControl w="10rem" mt={5} mr="1rem">
                                     <FormLabel>Filtrar por</FormLabel>
                                     <Select
@@ -40,4 +41,20 @@ export default function SendEmail(){
             </div>
         </div>
     );
+}
+
+export const getServerSideProps: GetServerSideProps = async(ctx) => {
+    const { access_token } = ctx.req.cookies;
+
+    if(!access_token){
+        return{
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
+    return{
+        props: {}
+    }
 }

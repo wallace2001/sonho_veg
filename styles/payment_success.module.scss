@@ -1,0 +1,103 @@
+.container{
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-background-cart);
+
+    padding: 10rem 15%;
+    transition: padding 0.4s;
+
+    @media screen and (max-width: 950px){
+        padding: 10rem 10%;
+    }
+    @media screen and (max-width: 550px){
+        padding: 10rem 4%;
+    }
+
+    .content{
+        width: 100%;
+        height: auto;
+
+        background-color: var(--color-white);
+
+        .box{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: 2rem 5rem;
+            transition: padding 0.4s;
+
+            @media screen and (max-width: 950px){
+                padding: 2rem 2rem;
+            }
+
+            @media screen and (max-width: 550px){
+                padding: 2rem 0.5rem;
+            }
+
+            label{
+                width: 100%;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                color: var(--color-white);
+                font-size: 1.1rem;
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: bold;
+
+                text-align: center;
+                padding: 1rem 0;
+
+                background-color: var(--color-label-id);
+            }
+
+            .thank{
+                font-size: 1.3rem;
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: bold;
+                text-align: center;
+
+                padding: 3rem 0 1rem 0;
+            }
+
+            div{
+                width: 100%;
+                height: 100%;
+
+                padding: 2rem 0;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                @media screen and (max-width: 1230px){
+                    flex-direction: column;
+                }
+
+                p{
+                    width: 50%;
+                    @media screen and (max-width: 1230px){
+                        width: 80%;
+                    }
+                }
+
+                img{
+                    width: 50%;
+                    height: 50%;
+                    object-fit: contain;
+
+                    padding: 2rem 0;
+
+                    @media screen and (max-width: 550px){
+                        width: 70%;
+                        height: 70%;
+                    }
+                }
+            }
+        }
+    }
+}

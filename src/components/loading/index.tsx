@@ -1,9 +1,6 @@
-import { Box } from '@chakra-ui/layout'
-import { Modal, ModalContent } from '@chakra-ui/modal'
 import { Spinner } from '@chakra-ui/spinner'
 import React from 'react'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
-import { changeLoading } from '../../store/actions/loading.action'
 import styles from './index.module.scss';
 
 export const Loading = () => {

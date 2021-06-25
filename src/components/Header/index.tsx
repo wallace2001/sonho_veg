@@ -20,22 +20,22 @@ interface CartProps{
 export const Header = (props: CartProps) => {
     const [isOpenRegister, setIsOpenRegister] = useState(false);
     const [isOpenLogin, setIsOpenLogin] = useState(false);
-    const [lengthCart, setLengthCart] = useState<number>(0);
 
     const { account } = useSelector((state: RootStateOrAny) => state.authReducer);
     const router = useRouter();
 
+    const { lengthCart } = useContext(AuthContext);
+
     useEffect(() => {
       const func = async() => {
-        const cart: Array<[]> = await JSON.parse(localStorage.getItem("cart_list"));
-        const tamCart = cart?.length;
-
-        setLengthCart(prevState => prevState = tamCart);
+        const cart: number = await JSON.parse(localStorage.getItem("cart_list_length"));
 
       }
 
       func();
     }, []);
+
+    console.log(lengthCart);
 
     return (
         <div className={styles.background}>

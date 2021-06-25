@@ -4,16 +4,20 @@
 
     padding: 2rem;
 
-    background-color: #121229;
+    background-color: var(--color-background-menuleft);
+
+    @media screen and (max-width: 1150px){
+        display: none;
+    }
 
     h1{
         font-size: 1.7rem;
         font-weight: bold;
         font-family: 'Ubuntu', sans-serif;
-        color: #fff;
+        color: var(--color-white);
         text-align: center;
         strong{
-            color: #EB03FF
+            color: var(--color-text-strong);
         }
     }
 
@@ -36,7 +40,7 @@
             button{
                 display: flex;
                 align-items: center;
-                color: #EFEFEF;
+                color: var(--color-button-menuleft);
                 margin-top: 1rem;
                 border: 1px solid transparent;
                 transition: transform 250ms;
@@ -57,7 +61,7 @@
             button{
                 display: flex;
                 align-items: center;
-                color: #EFEFEF;
+                color: var(--color-button-menuleft);
                 margin-top: 1rem;
                 border: 1px solid transparent;
                 transition: transform 250ms;
@@ -73,7 +77,92 @@
             button{
                 display: flex;
                 align-items: center;
-                color: #EFEFEF;
+                color: var(--color-button-menuleft);
+                transition: transform 250ms;
+                
+                &:hover{
+                    transform: translateY(-10px);
+                }
+            }
+        }
+    }
+}
+.containerMobile{
+    width: 100%;
+    height: 100vh;
+
+    padding: 2rem;
+
+    background-color: var(--color-background-menuleft);
+
+    h1{
+        font-size: 1.7rem;
+        font-weight: bold;
+        font-family: 'Ubuntu', sans-serif;
+        color: var(--color-white);
+        text-align: center;
+        strong{
+            color: var(--color-text-strong);
+        }
+    }
+
+    .content{
+        width: 100%;
+        height: 99%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-around;
+        flex-direction: column;
+
+        div:first-child{
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            flex: 1;
+            margin-top: 5rem;
+            flex-direction: column;
+
+            button{
+                display: flex;
+                align-items: center;
+                color: var(--color-button-menuleft);
+                margin-top: 1rem;
+                border: 1px solid transparent;
+                transition: transform 250ms;
+                
+                &:hover{
+                    transform: translateY(-10px);
+                }
+            }
+        }
+
+        div:nth-child(2){
+            width: 100%;
+            display: flex;
+            flex: 5;
+            align-items: flex-start;
+            flex-direction: column;
+
+            button{
+                display: flex;
+                align-items: center;
+                color: var(--color-button-menuleft);
+                margin-top: 1rem;
+                border: 1px solid transparent;
+                transition: transform 250ms;
+                
+                &:hover{
+                    transform: translateY(-10px);
+                }
+            }
+        }
+
+        div:last-child{
+            flex: 1;
+            button{
+                display: flex;
+                align-items: center;
+                color: var(--color-button-menuleft);
                 transition: transform 250ms;
                 
                 &:hover{

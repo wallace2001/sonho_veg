@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './index.module.scss';
 import { AiOutlineDashboard, AiOutlineMail, AiFillPlusCircle } from 'react-icons/ai';
 import { BiFoodMenu } from 'react-icons/bi';
@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 export const MenuLeft = () => {
     const router = useRouter();
     return (
+        <>
         <div className={styles.container}>
             <h1>Sonho <strong>Veg</strong></h1>
             <div className={styles.content}>
@@ -27,5 +28,6 @@ export const MenuLeft = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }

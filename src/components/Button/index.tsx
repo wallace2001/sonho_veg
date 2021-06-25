@@ -6,15 +6,16 @@ interface ButtonAllProps extends ButtonProps{
     textButton?: string;
     icon?: any;
     color?: string;
+    textCol?: string;
 }
 
-export const Button_Global = ({ textButton, icon, color, ...rest }: ButtonAllProps) => {    
+export const Button_Global = ({ textButton, textCol, icon, color, ...rest }: ButtonAllProps) => {    
     return (
         <Button colorScheme={color} {...rest}>
             {icon && (
                 icon
             )}
-            <Text>{textButton}</Text>
+            <Text textColor={textCol && textCol}>{textButton}</Text>
         </Button>
     )
 }

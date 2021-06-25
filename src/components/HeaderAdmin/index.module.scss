@@ -2,7 +2,15 @@
     width: 100%;
     height: 5rem;
 
-    background-color: #fff;
+    background-color: var(--color-white);
+
+    @media screen and (max-width: 1150px){
+        width: 100%;
+    }
+
+    @media screen and (max-width: 1150px){
+        display: none;
+    }
 
     .content{
         width: 100%;
@@ -10,5 +18,28 @@
         padding: 1.2rem 3rem;
         align-items: center;
         justify-content: flex-end;
+    }
+}
+
+.containerMobile{
+    width: 100%;
+    height: 5rem;
+
+    background-color: var(--color-white);
+
+    @media screen and (max-width: 1150px){
+        display: flex;
+    }
+
+    @media screen and (min-width: 1150px){
+        display: none;
+    }
+
+    .content{
+        width: 100%;
+        display: flex;
+        padding: 1.2rem 3rem;
+        align-items: center;
+        justify-content: space-between;
     }
 }

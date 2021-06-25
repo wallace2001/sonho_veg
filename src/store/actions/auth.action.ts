@@ -1,6 +1,7 @@
 import { Http, HttpAuth } from "../../config/http";
 import { AppDispatch } from "../store";
 import { changeLoading } from "./loading.action";
+import Cookie from 'js-cookie';
 
 interface UserProps{
     admin: boolean;
@@ -30,7 +31,8 @@ export const actionTypes = {
     SUCCESS: "AUTH_SUCCESS",
     ACCOUNT: "AUTH_ACCOUNT",
     ERROR: "AUTH_ERROR",
-    STATUS: "AUTH.STATUS"
+    STATUS: "AUTH.STATUS",
+    LIST_USERS: "LIST_USERS"
 }
 
 export const change = (payload) => ({
@@ -58,12 +60,17 @@ export const status = (payload) => ({
     payload
 });
 
+export const listUser = (payload) => ({
+    type: actionTypes.LIST_USERS,
+    payload
+});
+
 export const logout = () => async (dispatch: AppDispatch) => {
     dispatch(changeLoading({open: true}));
-    if(await localStorage.getItem("access_token")){
-        await localStorage.removeItem("access_token");
+    if(await Cookie.get("access_token")){
+        await Cookie.remove("access_token");
     }else{
-        await sessionStorage.removeItem("access_token");
+        await localStorage.removeItem("access_token");
     }
     window.location.replace('/');
     dispatch(changeLoading({open: false}));
@@ -75,22 +82,24 @@ export const accountVerify = () => async (dispatch: AppDispatch) => {
     dispatch(changeLoading({open: true}));
     return await HttpAuth.get('/user').then(res => {
         dispatch(changeLoading({open: false}));
-        // console.log(res.data);
-        dispatch(account({
-            ok: res.data.ok,
-            admin: res.data.admin,
-            email: res.data.email,
-            name: res.data.name,
-            sex: res.data.sex,
-            telphone: res.data.telphone
-        }));
+        if(!res.data.error){
+            dispatch(account({
+                ok: res.data.ok,
+                id: res.data.id,
+                admin: res.data.admin,
+                email: res.data.email,
+                name: res.data.name,
+                sex: res.data.sex,
+                telphone: res.data.telphone
+            }));
+        }
     }).catch((error) => {
         console.log(error);
     })
 }
 
-export const accountInfo = (state: UserProps) => (dispatch: AppDispatch) => {
-    dispatch(account({
+export const accountInfo = (state: UserProps) => async (dispatch: AppDispatch) => {
+    await dispatch(account({
         ok: true,
         admin: state.admin,
         email: state.email,
@@ -103,7 +112,7 @@ export const accountInfo = (state: UserProps) => (dispatch: AppDispatch) => {
 export const setUserToken = (token: string, checked: boolean) => (dispatch: AppDispatch) => {
 
     checked 
-    ? localStorage.setItem('access_token', token) 
+    ? Cookie.set('access_token', token) 
     : sessionStorage.setItem('access_token', token);
     
     dispatch(change({
@@ -114,6 +123,23 @@ export const setUserToken = (token: string, checked: boolean) => (dispatch: AppD
     window.location.replace('/');
 
     dispatch(success(true));
+}
+
+export const listUsers = () => (dispatch: AppDispatch) => {
+    dispatch(changeLoading({open: true}));
+    HttpAuth.get("userList").then(res => {
+        dispatch(changeLoading({open: false}));   
+        if(typeof res !== 'undefined'){
+            console.log(res.data);
+            res.data.map(item => {
+                return dispatch(listUser({
+                    id: item.id,
+                    name: item.name,
+                    email: item.email
+                }));
+            })
+        } 
+    });
 }
 
 export const login = (credentials: credentialsProps, checked: boolean) => (dispatch) => {

@@ -4,6 +4,7 @@ import { HeaderAdmin } from '../../components/HeaderAdmin';
 import { MenuLeft } from '../../components/MenuLeft';
 import { BsArrowUp, BsArrowDown } from 'react-icons/bs';
 import { Graphics } from '../../components/Graphics';
+import { GetServerSideProps } from 'next';
 
 export default function Home(){
 
@@ -113,4 +114,20 @@ export default function Home(){
             </div>
         </div>
     );
+}
+
+export const getServerSideProps: GetServerSideProps = async(ctx) => {
+    const { access_token } = ctx.req.cookies;
+
+    if(!access_token){
+        return{
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
+    return{
+        props: {}
+    }
 }

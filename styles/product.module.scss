@@ -58,7 +58,7 @@
 
                 label{
                     font-size: 2rem;
-                    color: #422361;
+                    color: var(--color-label-price);
                     font-family: 'Roboto', sans-serif;
                     font-weight: 200;
 
@@ -88,7 +88,7 @@
                     font-size: 40px;
                     line-height: 46px;
 
-                    color: #422361;
+                    color: var(--color-label-price);
                 }
 
                 div{
@@ -99,19 +99,19 @@
                         cursor: pointer;
                         outline: none;
 
-                        background-color: #fff;
-                        border: 1px solid #331F46;
+                        background-color: var(--color-white);
+                        border: 1px solid var(--color-button-buy);
                         border-radius: 5px;
 
-                        color: #331F46;
+                        color: var(--color-button-buy);
                         font-size: 1.5rem;
                         font-family: 'Ubuntu', sans-serif;
                         font-weight: bold;
                         transition: background 0.4s ease-in-out;
 
                         &:hover{
-                            background-color: #331F46;
-                            color: #fff;
+                            background-color: var(--color-button-buy);
+                            color: var(--color-white);
                         }
                     }
                     .buttonAddCart{
@@ -121,19 +121,19 @@
 
                         margin-left: 1rem;
 
-                        background-color: #fff;
-                        border: 1px solid #331F46;
+                        background-color: var(--color-white);
+                        border: 1px solid var(--color-button-buy);
                         border-radius: 5px;
 
-                        color: #331F46;
+                        color: var(--color-button-buy);
                         font-size: 1.5rem;
                         font-family: 'Ubuntu', sans-serif;
                         font-weight: bold;
                         transition: background 0.4s ease-in-out;
 
                         &:hover{
-                            background-color: #331F46;
-                            color: #fff;
+                            background-color: var(--color-button-buy);
+                            color: var(--color-white);
                         }
                     }
                 }
@@ -173,19 +173,19 @@
                     cursor: pointer;
                     outline: none;
 
-                    background-color: #fff;
-                    border: 1px solid #331F46;
+                    background-color: var(--color-white);
+                    border: 1px solid var(--color-button-buy);
                     border-radius: 5px;
 
-                    color: #331F46;
+                    color: var(--color-button-buy);
                     font-size: 1.5rem;
                     font-family: 'Ubuntu', sans-serif;
                     font-weight: bold;
                     transition: background 0.4s ease-in-out;
 
                     &:hover{
-                        background-color: #331F46;
-                        color: #fff;
+                        background-color: var(--color-button-buy);
+                        color: var(--color-white);
                     }
 
                     @media screen and (max-width: 610px){
@@ -199,19 +199,19 @@
 
                     margin-left: 1rem;
 
-                    background-color: #fff;
-                    border: 1px solid #331F46;
+                    background-color: var(--color-white);
+                    border: 1px solid var(--color-button-buy);
                     border-radius: 5px;
 
-                    color: #331F46;
+                    color: var(--color-button-buy);
                     font-size: 1.5rem;
                     font-family: 'Ubuntu', sans-serif;
                     font-weight: bold;
                     transition: background 0.4s ease-in-out;
 
                     &:hover{
-                        background-color: #331F46;
-                        color: #fff;
+                        background-color: var(--color-button-buy);
+                        color: var(--color-white);
                     }
                 }
             }
@@ -223,14 +223,14 @@
                 font-size: 40px;
                 line-height: 46px;
 
-                color: #422361;
+                color: var(--color-title-product);
             }
 
             h4{
                 padding: 1rem 0;
 
                 font-size: 1.4rem;
-                color: #331F46;
+                color: var(--color-button-buy);
                 font-weight: 400;
                 font-family: 'Ubuntu', sans-serif;
             }
@@ -252,7 +252,7 @@
 
             label{
                 font-size: 2rem;
-                color: #422361;
+                color: var(--color-title-product);
                 font-family: 'Roboto', sans-serif;
                 font-weight: 200;
                 margin-bottom: 1.4rem;

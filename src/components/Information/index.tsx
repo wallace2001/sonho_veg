@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react'
 import { Button_Global } from '../Button';
 import styles from './index.module.scss';
@@ -7,10 +8,12 @@ interface InformationProps{
     image: string;
     buttonText: string;
     description: string;
+    buttonRoute: string;
     reverse?:boolean;
 }
 
 export const Information = (props: InformationProps) => {
+    const route = useRouter();
     return (
         <div className={styles.contentContact}>
           <div style={props.reverse && {flexDirection: "row-reverse"}}>
@@ -21,6 +24,7 @@ export const Information = (props: InformationProps) => {
                     textButton={props.buttonText}
                     color="pink"    
                     marginTop={5}
+                    onClick={() => route.push(`${props.buttonRoute}`)}
                 />
               </label>
             <img src={props.image} alt="" />

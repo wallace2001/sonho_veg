@@ -11,9 +11,7 @@ export const productsReducer = (state = initialState, { type, payload }) => {
     case actionTypes.CHANGE:
         return { 
             ...state,
-            products: [
-                payload 
-            ]
+            products: payload
         }
     
     case actionTypes.SHOW: 

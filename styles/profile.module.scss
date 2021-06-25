@@ -4,13 +4,13 @@
 
     padding: 10rem 10rem;
 
-    background-color: #F5F5F5;
+    background-color: var(--color-background-profile);
 
     h4{
         font-size: 1.3rem;
         font-family: "Ubuntu", sans-serif;
         font-weight: bold;
-        color: #391159;
+        color: var(--color-text-profile);
 
         margin-bottom: 2rem;
     }
@@ -36,7 +36,7 @@
                 font-size: 1rem;
                 font-family: "Ubuntu", sans-serif;
                 font-weight: bold;
-                color: #391159;
+                color: var(--color-text-profile);
                 
                 margin-bottom: 1rem;
             }
@@ -48,7 +48,7 @@
 
             padding: 2rem 2rem;
 
-            background-color: #fff;
+            background-color: var(--color-white);
 
             .profileAccount{
                 width: 100%;
@@ -60,21 +60,49 @@
 
                 padding: 1rem 0;
 
-                border-bottom: 1px solid #ccc;
+                border-bottom: 1px solid var(--color-gray);
 
                 label{
                     p:first-child{
                         font-size: 1rem;
                         font-family: "Ubuntu", sans-serif;
                         font-weight: bold;
-                        color: #391159;
+                        color: var(--color-text-profile);
                     }
 
                     p:last-child{
                         font-size: 1rem;
                         font-family: "Ubuntu", sans-serif;
                         font-weight: 300;
-                        color: #391159;
+                        color: var(--color-text-profile);
+                    }
+                }
+            }
+            .profileAccountTelphone{
+                width: 100%;
+                height: 100%;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: 1rem 0;
+
+                // border-bottom: 1px solid var(--color-gray);
+
+                label{
+                    p:first-child{
+                        font-size: 1rem;
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: bold;
+                        color: var(--color-text-profile);
+                    }
+
+                    p:last-child{
+                        font-size: 1rem;
+                        font-family: "Ubuntu", sans-serif;
+                        font-weight: 300;
+                        color: var(--color-text-profile);
                     }
                 }
             }
@@ -89,7 +117,7 @@
             font-size: 1rem;
             font-family: "Ubuntu", sans-serif;
             font-weight: bold;
-            color: #391159;
+            color: var(--color-text-profile);
 
             margin-bottom: 1rem;
         }
@@ -100,7 +128,7 @@
 
             padding: 2rem 2rem;
 
-            background-color: #fff;
+            background-color: var(--color-white);
 
             .profileAccount{
                 width: 100%;
@@ -112,21 +140,21 @@
 
                 padding: 1rem 0;
 
-                border-bottom: 1px solid #ccc;
+                border-bottom: 1px solid var(--color-gray);
 
                 label{
                     p:first-child{
                         font-size: 1rem;
                         font-family: "Ubuntu", sans-serif;
                         font-weight: bold;
-                        color: #391159;
+                        color: var(--color-text-profile);
                     }
 
                     p:last-child{
                         font-size: 1rem;
                         font-family: "Ubuntu", sans-serif;
                         font-weight: 300;
-                        color: #391159;
+                        color: var(--color-text-profile);
                     }
                 }
             }
@@ -140,7 +168,7 @@
 
                 padding: 1rem 0;
 
-                border-bottom: 1px solid #ccc;
+                border-bottom: 1px solid var(--color-gray);
 
                 label{
                     .add{
@@ -150,7 +178,7 @@
                             font-size: 1rem;
                             font-family: "Ubuntu", sans-serif;
                             font-weight: bold;
-                            color: #391159;
+                            color: var(--color-text-profile);
                             margin-bottom: 1rem;
                             margin-right: 1rem;
                         }
@@ -160,7 +188,7 @@
                         font-size: 1rem;
                         font-family: "Ubuntu", sans-serif;
                         font-weight: 300;
-                        color: #391159;
+                        color: var(--color-text-profile);
                     }
                     p:nth-child(3){
                         font-size: 0.7rem;

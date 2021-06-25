@@ -2,10 +2,11 @@ import { Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from '@c
 import { Box, Button } from '@chakra-ui/react';
 import { FaUserAlt } from 'react-icons/fa';
 import { RiArrowDropDownFill } from 'react-icons/ri';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../store/actions/auth.action';
+import { accountVerify, logout } from '../../store/actions/auth.action';
+import { GetServerSideProps } from 'next';
 
 interface AuthProps{
     account: {
@@ -21,6 +22,9 @@ export const MenuHeader = () => {
     const router = useRouter();
     
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(accountVerify());
+    }, []);
     const { account }: AuthProps = useSelector((state: RootStateOrAny) => state.authReducer);
 
     console.log(account.admin);
@@ -37,7 +41,7 @@ export const MenuHeader = () => {
         <MenuList>
             <MenuGroup title="Perfil"style={{color: "black", fontWeight: "normal"}}>
             <MenuItem onClick={() => router.push('/profile')}>Meu Perfil</MenuItem>
-            <MenuItem>Compras</MenuItem>
+            <MenuItem onClick={() => router.push('/payment')}>Compras</MenuItem>
             </MenuGroup>
             {account.admin ? (
                 <>
@@ -54,4 +58,22 @@ export const MenuHeader = () => {
         </MenuList>
         </Menu>
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async(ctx) => {
+
+    const { access_token } = ctx.req.cookies;
+
+    if(!access_token){
+        return{
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
+
+    return{
+        props: {}
+    }
 }

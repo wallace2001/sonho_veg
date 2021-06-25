@@ -1,6 +1,6 @@
 import { actionName } from '../actions/loading.action';
 const initialState = {
-    open: false
+    open: true
 }
 
 export const loadingReducer = (state = initialState, { type, payload }) => {

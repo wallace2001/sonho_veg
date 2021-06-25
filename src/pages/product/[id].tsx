@@ -15,7 +15,7 @@ import { Notify } from '../../components/Notify';
 import { Alert } from '@chakra-ui/alert';
 import { useToast } from '@chakra-ui/toast';
 import { accountVerify } from '../../store/actions/auth.action';
-import { showProduct } from '../../store/actions/products.action';
+import { productsAll, showProduct } from '../../store/actions/products.action';
 import { change } from '../../store/actions/notify.action';
 import { useRouter } from 'next/router';
 
@@ -107,7 +107,7 @@ export default function Product({ id }){
         }
         await localStorage.setItem("cart_list", JSON.stringify(oldCart));
       }
-
+      console.log(product.name);
     return(
         <>
             <Header aleradyCart={false}/>
@@ -137,7 +137,7 @@ export default function Product({ id }){
 
                 <div className={styles.contentDescriptionMobile}>
                     <div className={styles.column}>
-                        <p className={styles.title}>{id}</p>
+                        <p className={styles.title}>{product.name}</p>
                         <img src="/milkshake.svg" alt="produto"/>
                         <h4>Descrição</h4>
                         <p>{product.description}</p>

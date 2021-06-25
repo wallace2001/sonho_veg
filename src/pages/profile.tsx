@@ -8,6 +8,8 @@ import { ModalEditProfile } from '../components/modalEditProfile';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { Button_Global } from '../components/Button';
+import { GetServerSideProps } from 'next';
+import Cookie from 'js-cookie';
 
 interface AuthProps{
     account: {
@@ -25,17 +27,6 @@ export default function Profile(){
     const router = useRouter();
     
     return(
-        !account.ok ? (
-            <div className={styles.noLogged}>
-                <p>Você não está logado, crie uma conta ou entre com a sua para acessar essa página.</p>
-                <Button_Global 
-                    color="pink"
-                    textButton="Voltar"
-                    mt={5}
-                    onClick={() => router.push('/')}
-                />
-            </div>
-        ) :
         <>
             <Header aleradyCart={false}/>
             <div className={styles.container}>
@@ -61,7 +52,7 @@ export default function Profile(){
                             </label>
                         </div>
 
-                        <div className={styles.profileAccount}>
+                        <div className={styles.profileAccountTelphone}>
                             <label>
                                 <p>Telefone</p>
                                 <p>{account.telphone}</p>
@@ -105,4 +96,21 @@ export default function Profile(){
             <Footer />
         </>
     );
+}
+
+export const getServerSideProps: GetServerSideProps = async(ctx) => {
+    const { access_token } = ctx.req.cookies;
+
+    if(!access_token){
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            }
+        }
+    }
+
+    return{
+        props: {}
+    };
 }

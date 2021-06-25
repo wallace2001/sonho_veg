@@ -6,12 +6,10 @@ import { Box } from '@chakra-ui/layout';
 import { FiPlus } from 'react-icons/fi';
 import { AiOutlineExclamation } from 'react-icons/ai';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { Storage } from '../../utils/storage';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { change } from '../../store/actions/notify.action';
-import { changeShowProduct, showProduct } from '../../store/actions/products.action';
-import axios from 'axios';
-import { Http } from '../../config/http';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 interface Products{
     calories: string;
@@ -22,6 +20,8 @@ interface Products{
     image: string;
     name: string;
     price: string;
+    price_single?: string;
+    quantity: number;
     slug: string;
 }
 
@@ -37,6 +37,7 @@ interface PropsProductSlider{
 export const ProductSlider = (props: PropsProductSlider) => {
     const [windowTam, setWindowTam] = useState<number>();
     const [tamSlider, setTamSlider] = useState<number>();
+    const { setCount, count } = useContext(AuthContext);
     const router = useRouter();
     const dispatch = useDispatch();
 
@@ -52,7 +53,7 @@ export const ProductSlider = (props: PropsProductSlider) => {
         }
     }, []);
 
-    
+
   const handleClickViewerProduct = (id: string) => {
     router.push(`/product/${id}`);
   };
@@ -62,12 +63,16 @@ export const ProductSlider = (props: PropsProductSlider) => {
     const oldCart: Array<[]> = cart ? cart : [];
     let array = oldCart;
 
+    console.log(product);
+
     const newItem: any = {
         id: product.id,
         name: product.name,
         slug: product.slug,
         price: product.price,
+        price_single: product.price,
         image: product.image,
+        quantity: product.quantity,
         description: product.description,
         calories: product.calories,
         categories_id: product.categories_id,
@@ -85,6 +90,11 @@ export const ProductSlider = (props: PropsProductSlider) => {
             status: "error",
             duration: 2 * 1000
         }));
+        setTimeout(() => {
+            dispatch(change({
+                open: false
+            }));
+        }, 2 * 1000);
     }else{
         oldCart.push(newItem);
         dispatch(change({
@@ -93,10 +103,16 @@ export const ProductSlider = (props: PropsProductSlider) => {
             status: "success",
             duration: 2 * 1000
         }));
+        setTimeout(() => {
+            dispatch(change({
+                open: false
+            }));
+        }, 2 * 1000);
     }
     await localStorage.setItem("cart_list", JSON.stringify(oldCart));
+    localStorage.setItem("cart_list_length", JSON.stringify(oldCart.length));
+    setCount(Number(count + 1));
   }
-
     return (
         <div className={styles.container}>
             <div className={styles.background}>
@@ -122,19 +138,13 @@ export const ProductSlider = (props: PropsProductSlider) => {
                 {props?.products?.map((item, index) => {
                     return(
                         <Slide key={index} index={index}>
-                            <Box d="flex" flexDirection="column" alignItems="center" justifyContent="center">
+                            <Box h="100%" d="flex" flexDirection="column" alignItems="center" justifyContent="center">
 
                                 <Box className={styles.slider} bg={props.colorContent}>
-                                    <Box d="flex" flexDirection="column" alignItems="center" justifyContent="center">
                                         <h2 style={{textAlign: 'center'}}>{item.name}</h2>
                                         <img src={item.image} alt="" />
-                                    </Box>
-                                    <Box className={styles.boxSlider} w="33rem" d="flex" alignItems="center" flexDirection="column" p="1rem 1rem">
-                                        <Box className={styles.boxSubtitle}>
-                                            <p>{item.description}</p>
-                                        </Box>
-                                        <h1>{item.price}</h1>
-                                    </Box>
+                                        <p>{item.description}</p>
+                                        <h1>R$ {item.price}</h1>
                                 </Box>
 
                                 <Box className={styles.infoBalls} d="flex" alignItems="center">

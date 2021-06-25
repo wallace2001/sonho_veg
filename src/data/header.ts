@@ -3,10 +3,10 @@ export const HeaderMenu = [
         name: "Início",
         from: "/"
     },
-    {
-        name: "Cardápio",
-        from: "/menu"
-    },
+    // {
+    //     name: "Cardápio",
+    //     from: "/menu"
+    // },
     {
         name: "Contato",
         from: "/contact"

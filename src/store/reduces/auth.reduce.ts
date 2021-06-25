@@ -8,6 +8,7 @@ const initialState = {
     success: false,
     account: {
         ok: false,
+        id: 0,
         admin: 0,
         email: "",
         name: "",
@@ -18,7 +19,14 @@ const initialState = {
         ok: false,
         message: ""
     },
-    status: false
+    status: false,
+    users: [
+        {
+            id: '',
+            name: '',
+            email: ''
+        }
+    ]
 }
 
 export const authReducer = (state = initialState, { type, payload }) => {
@@ -60,6 +68,16 @@ export const authReducer = (state = initialState, { type, payload }) => {
         return{
             ...state,
             status: payload
+        }
+
+    case actionTypes.LIST_USERS:
+        return{
+            ...state,
+            users: [
+                {
+                    ...payload
+                }
+            ]
         }
 
     default:

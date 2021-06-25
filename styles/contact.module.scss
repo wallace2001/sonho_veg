@@ -31,7 +31,7 @@
                 font-size: 1.6rem;
                 font-family: 'Ubuntu', sans-serif;
                 font-weight: bold;
-                color: #621A52;
+                color: var(--color-title);
                 margin-bottom: 2rem;
             }
             div{
@@ -39,7 +39,7 @@
                     font-size: 1.1rem;
                     font-family: 'Ubuntu', sans-serif;
                     font-weight: bold;
-                    color: #621A52
+                    color: var(--color-title);
                 }
     
                 p:last-child{
@@ -47,7 +47,7 @@
                     font-weight: normal;
                     margin-top: 0.5rem;
                     margin-bottom: 1rem;
-                    color: #3F1449;
+                    color: var(--color-text);
                 }
             }
 
@@ -72,7 +72,7 @@
     height: 100%;
 
     padding: 2rem 15rem 5rem 15rem;
-    background-color: #361855;
+    background-color: var(--color-background-team);
 
     border-radius: 0 10rem 0 10rem;
 
@@ -88,7 +88,7 @@
     
     h1{
         font-size: 1.5rem;
-        color: #fff;
+        color: var(--color-white);
         font-family: 'Ubuntu', sans-serif;
         font-weight: bold;
 
@@ -130,7 +130,7 @@
                     width: 50px;
                     height: 50px;
     
-                    background-color: #fff;
+                    background-color: var(--color-white);
                     border-radius: 50%;
                 }
 
@@ -140,11 +140,11 @@
                         font-size: 1.3rem;
                         font-family: 'Ubuntu', sans-serif;
                         font-weight: bold;
-                        color: #E52FE9;
+                        color: var(--color-text-team);
                     }
     
                     p:last-child{
-                        color: #fff;
+                        color: var(--color-white);
                     }
                 }
             }
@@ -153,11 +153,11 @@
                 margin-top: 1rem;
                 p:first-child{
                     font-size: 1.1rem;
-                    color: #fff;
+                    color: var(--color-white);
                 }
                 p:last-child{
                     font-size: 0.9rem;
-                    color: #fff;
+                    color: var(--color-white);
                 }
             }
 
@@ -165,7 +165,7 @@
                 margin-top: 1rem;
                 width: 15rem;
                 font-size: 0.9rem;
-                color: #fff;
+                color: var(--color-white);
             }
         }
 

@@ -1,9 +1,22 @@
-import { Http } from "../../config/http";
+import { Http, HttpAuth } from "../../config/http";
+import { AppDispatch } from "../store";
 import { changeLoading } from "./loading.action";
+import { change as changeNotify  } from './notify.action';
+
+interface PropsContent{
+    content: {
+        name: string;
+        description: string;
+        calories: string;
+        price: string;
+        category: string;
+        image?: File;
+    }
+}
 
 export const actionTypes = {
     CHANGE: "PRODUCT_CHANGE",
-    SHOW: "SHOW_PRODUCT"
+    SHOW: "SHOW_PRODUCT",
 }
 
 export const change = (payload) => ({
@@ -16,7 +29,7 @@ export const changeShowProduct = (payload) => ({
     payload
 });
 
-export const indexProduct = () => dispatch => {
+export const indexProduct = () => (dispatch: AppDispatch) => {
     dispatch(changeLoading({open: true}));
     return Http.get("/products").then(res => {
         dispatch(changeLoading({ open: false }));
@@ -26,7 +39,7 @@ export const indexProduct = () => dispatch => {
     })
 }
 
-export const showProduct = (id: string) => dispatch => {
+export const showProduct = (id: string) => (dispatch: AppDispatch) => {
     dispatch(changeLoading({ open: true }));
     return Http.get(`/product?id=${id}`).then(res => {
         dispatch(changeLoading({ open: false }));
@@ -35,4 +48,52 @@ export const showProduct = (id: string) => dispatch => {
         }
 
     })
+}
+
+export const productsAll = () => (dispatch: AppDispatch) => {
+    Http.get('productsall').then(res => {
+        if(typeof res !== 'undefined'){
+            console.log(res.data);
+            dispatch(change(res.data));
+        }
+    })
+}
+
+export const createProduct = ({content}: PropsContent) => (dispatch: AppDispatch) => {
+    dispatch(changeLoading({open: true}));
+    const data = new FormData();
+
+    data.append('name', content.name);
+    data.append('description', content.description);
+    data.append('calories', content.calories);
+    data.append('category', content.category);
+    data.append('price', content.price);
+    data.append('file', content.image);
+
+    HttpAuth.post('/createProduct', data).then(res => {
+
+        dispatch(changeLoading({open: false}));
+        if(typeof res !== 'undefined'){
+
+            dispatch(changeNotify({
+                open: true,
+                title: res.data.message
+            }));
+    
+            setTimeout(() => {
+                dispatch(changeNotify({open: false}));
+            }, 2 * 1000);
+        }
+
+        if(res.data.error){
+            dispatch(changeNotify({
+                open: true,
+                title: res.data.error
+            }));
+    
+            setTimeout(() => {
+                dispatch(changeNotify({open: false}));
+            }, 2 * 1000);
+        }
+    });
 }
