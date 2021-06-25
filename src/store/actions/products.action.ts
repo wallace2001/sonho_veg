@@ -10,8 +10,17 @@ interface PropsContent{
         calories: string;
         price: string;
         category: string;
-        image?: File;
+        image?: any;
     }
+}
+
+interface PropsUpdate{
+    name: string;
+    description: string;
+    calories: string;
+    price: string;
+    category: string;
+    image?: any;
 }
 
 export const actionTypes = {
@@ -127,7 +136,7 @@ export const deleteProduct = (id: string) => (dispatch) => {
     });
 }
 
-export const updateProduct = (id: string, {content}: PropsContent) => (dispatch: AppDispatch) => {
+export const updateProduct = (id: string, content: PropsUpdate, image: string) => (dispatch) => {
     dispatch(changeLoading({open: true}));
     const data = new FormData();
 
@@ -136,15 +145,26 @@ export const updateProduct = (id: string, {content}: PropsContent) => (dispatch:
     data.append('calories', content.calories);
     data.append('category', content.category);
     data.append('price', content.price);
-    data.append('file', content.image);
+    if(content.image === image){
+        data.append('image', image);
+    }else{
+        data.append('file', content.image);
+    }
+
     HttpAuth.patch(`products_update/${id}`, data).then(res => {
         dispatch(changeLoading({open: false}));
 
         if(!res.data.error){
+            dispatch(productsAll());
             dispatch(changeNotify({
                 open: true,
                 title: "Produto atualizado com sucesso"
             }));
+            setTimeout(() => {
+                dispatch(changeNotify({
+                    open: false
+                }));
+            }, 2 * 1000);
         }else{
             dispatch(changeNotify({
                 open: true,

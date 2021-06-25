@@ -62,7 +62,7 @@ export default function Product({ id }){
         dispatch(showProduct(id));
     }, [dispatch]);
 
-    const handleSaveStorage = async () => {
+    const handleSaveStorage = async (status: boolean) => {
         const cart = await JSON.parse(localStorage.getItem("cart_list"));
         const oldCart: Array<[]> = cart ? cart : [];
         let array = oldCart;
@@ -104,10 +104,12 @@ export default function Product({ id }){
             dispatch(change({
                 open: false
             }));
+            if(status){
+                router.push('/cart');
+            }
         }
         await localStorage.setItem("cart_list", JSON.stringify(oldCart));
       }
-      console.log(product.name);
     return(
         <>
             <Header aleradyCart={false}/>
@@ -115,7 +117,7 @@ export default function Product({ id }){
                 <div className={styles.contentDescription}>
                     <div className={styles.columnTop}>
                         <div className={styles.productPrice}>
-                            <img src="/milkshake.svg" alt="produto"/>
+                            <img src={product.image} alt="produto"/>
                             <label>R$ {product.price}</label>
                         </div>
                     </div>
@@ -123,8 +125,8 @@ export default function Product({ id }){
                         <div className={styles.productDesc}>
                             <p>{product.name}</p>
                             <div>
-                                <button onClick={() => router.push('/cart')} className={styles.buttonBuy}>Comprar</button>
-                                <button onClick={handleSaveStorage} className={styles.buttonAddCart}>Adicionar ao carrinho</button>
+                                <button onClick={() => handleSaveStorage(true)} className={styles.buttonBuy}>Comprar</button>
+                                <button onClick={() => handleSaveStorage(false)} className={styles.buttonAddCart}>Adicionar ao carrinho</button>
                             </div>
                         </div>
                     </div>
@@ -144,9 +146,9 @@ export default function Product({ id }){
                         <label>R$ {product.price}</label>
                         <div>
                             <button 
-                            onClick={() => router.push('/cart')}
+                            onClick={() => handleSaveStorage(true)}
                              className={styles.buttonBuyMobile}>Comprar</button>
-                            <button onClick={handleSaveStorage} className={styles.buttonAddCartMobile}>Adicionar ao carrinho</button>
+                            <button onClick={() => handleSaveStorage(false)} className={styles.buttonAddCartMobile}>Adicionar ao carrinho</button>
                         </div>
                     </div>
                 </div>

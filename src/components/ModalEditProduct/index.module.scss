@@ -1,0 +1,142 @@
+.dropzone{
+    width: 100%;
+    height: 4rem;
+    padding: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border: 1px dashed black;
+
+    img{
+        width: 100%;
+        height: 110px;
+        object-fit: contain;
+    }
+}
+.dropzoneActive{
+    width: 100%;
+    height: 4rem;
+    padding: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border: 1px dashed rgb(56, 158, 56);
+
+    p{
+        color: rgb(56, 158, 56);
+    }
+}
+.dropzoneReject{
+    width: 100%;
+    height: 4rem;
+    padding: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border: 1px dashed rgb(255, 0, 0);
+
+    p{
+        color: rgb(255, 0, 0);
+    }
+}
+
+.titlePhoto{
+    font-size: 1.1rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+}
+
+.category{
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+
+    h2{
+        font-size: 1.1rem;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+    }
+
+    select{
+        width: 100%;
+        height: 3rem;
+
+        border: 0.070rem solid var(--color-gray);
+        outline: none;
+
+        &:focus{
+            border: 0.07rem solid var(--color-blue);
+        }
+    }
+}
+
+.divName{
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+
+    h2{
+        font-size: 1.1rem;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+    }
+
+    input{
+        width: 100%;
+        height: 2rem;
+        border: 0.07rem solid var(--color-gray);
+        padding: 1.2rem;
+        outline: none;
+
+        &:focus{
+            border: 0.07rem solid var(--color-blue);
+        }
+    }
+}
+
+.divdescription{
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+
+    h2{
+        font-size: 1.1rem;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+    }
+
+    textarea{
+        width: 100%;
+        height: 8rem;
+        resize: none;
+        border: 0.07rem solid var(--color-gray);
+        padding: 1.2rem;
+        outline: none;
+        font-size: 0.9rem;
+
+        &:focus{
+            border: 0.07rem solid var(--color-blue);
+        }
+    }
+}
+
+.button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 1rem;
+}

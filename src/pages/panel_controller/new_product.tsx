@@ -3,18 +3,16 @@ import styles from '../../../styles/panel.module.scss';
 import { HeaderAdmin } from '../../components/HeaderAdmin';
 import { MenuLeft } from '../../components/MenuLeft';
 import { Select } from '@chakra-ui/select';
-import { Box, Text } from '@chakra-ui/layout';
+import { Box } from '@chakra-ui/layout';
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control";
 import { Input } from '@chakra-ui/input';
 import { Textarea } from '@chakra-ui/textarea';
-import { Button_Global } from '../../components/Button';
 import Dropzone from 'react-dropzone';
 import { GetServerSideProps } from 'next';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { createProduct } from '../../store/actions/products.action';
-import { change } from '../../store/actions/notify.action';
 import { Button } from '@chakra-ui/react';
 
 interface PropsProduct{
@@ -29,7 +27,7 @@ interface PropsProduct{
 export default function SendEmail(){
 
     const { message } = useSelector((state: RootStateOrAny) => state.productsReducer);
-    const [file, setFile] = useState<any>();
+    const [file, setFile] = useState<File[]>();
     const dispatch = useDispatch();
 
     const validationSchema = yup.object().shape({
@@ -192,7 +190,7 @@ export default function SendEmail(){
                                     )}
                                 </Dropzone>
                             </FormControl>
-                            <Button onClick={() => handleSubmit()} isLoading={isSubmitting} mt={10} color="pink">Criar</Button>
+                            <Button onClick={() => handleSubmit()} colorScheme="pink" isLoading={isSubmitting} mt={10}>Criar</Button>
                         </Box>
                     </div>
                 </div>
