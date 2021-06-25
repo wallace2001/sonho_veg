@@ -4,13 +4,14 @@ import { HeaderAdmin } from '../../components/HeaderAdmin';
 import { MenuLeft } from '../../components/MenuLeft';
 import { Select } from '@chakra-ui/select';
 import { Box } from '@chakra-ui/layout';
-import { FormControl, FormLabel } from '@chakra-ui/form-control';
+import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { CardProducts } from '../../components/CardProducts';
 import { GetServerSideProps } from 'next';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { productsAll } from '../../store/actions/products.action';
 
 interface PropsProducts{
+    id: string;
     name: string;
     description: string;
     calories: string;

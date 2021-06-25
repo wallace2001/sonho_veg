@@ -6,7 +6,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { change } from '../store/actions/notify.action';
 import Cookies from 'js-cookie';
-import { Box } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { AuthContext } from '../context/authContext';
 import { deleteCartDatabase, paymentPage, saveCartDatabase } from '../store/actions/payment.action';
@@ -125,14 +125,21 @@ export default function Cart(){
     async function handlePayment(){
         const items: [Products] = await JSON.parse(localStorage.getItem("cart_list"));
         if(!date){
-            return dispatch(change({
+            dispatch(change({
                 open: true,
                 title: "Agende uma data, por favor!",
                 status: 'error',
                 duration: 2 * 1000
-            }))
+            }));
+            setTimeout(() => {
+                dispatch(change({
+                    open: false
+                }));
+            }, 2 * 1000);
+            
+        }else{
+            dispatch(saveCartDatabase(items, date));
         }
-        dispatch(saveCartDatabase(items, date));
     }
 
     return(
@@ -220,7 +227,7 @@ export default function Cart(){
 
                         <div>
                             <p>Agendamento</p>
-                            <Button_Global onClick={ () => setOpen(true) } colorScheme="pink" textButton={date ? format(date, "dd/MM/yyyy") : "Agendar"} />
+                            <Button onClick={ () => setOpen(true) } colorScheme="pink">{date ? format(date, "dd/MM/yyyy") : "Agendar"}</Button>
                             
                         </div>
 

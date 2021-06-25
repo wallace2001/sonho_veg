@@ -3,10 +3,12 @@ import { Box } from '@chakra-ui/layout'
 import styles from './index.module.scss';
 import { AiFillEdit } from 'react-icons/ai';
 import { BsFillTrashFill } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { deleteProduct } from '../../store/actions/products.action';
 
 interface Props{
     data: {
-
+        id: string;
         name: string;
         description: string;
         calories: string;
@@ -17,6 +19,12 @@ interface Props{
 }
 
 export const CardProducts = ({data}: Props) => {
+
+    const dispatch = useDispatch();
+    const handleDelete = (id: string) => {
+        dispatch(deleteProduct(id));
+    };
+
     return (
         <Box
         className={styles.cardContent}
@@ -45,7 +53,7 @@ export const CardProducts = ({data}: Props) => {
             </Box>
             <Box w="100%" mt={5} d="flex" justifyContent="space-evenly">
                 <button className={styles.edit}><AiFillEdit color="#fff" size={16} /></button>
-                <button className={styles.delete}><BsFillTrashFill color="#fff" size={16} /></button>
+                <button className={styles.delete} onClick={() => handleDelete(data.id)}><BsFillTrashFill color="#fff" size={16} /></button>
             </Box>
         </Box>
     )
