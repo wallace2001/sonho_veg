@@ -56,28 +56,6 @@ export const ModalEdit = ({open, onClose, item}: Props) => {
         // file: yup.array().required('Campo obrigatório.')
     });
 
-    const {
-        values,
-        touched,
-        errors,
-        isSubmitting,
-        handleSubmit,
-        handleChange,
-        handleBlur,
-        setSubmitting
-    } = useFormik({
-        onSubmit: (e) => handleCreateProduct(e),
-        validationSchema,
-        initialValues: {
-            name: '',
-            description: '',
-            calories: '',
-            category: '',
-            price: '',
-            // file: []
-        }
-    });
-
     const handleCreateProduct = async () => {
         validationSchema.isValid({
             name: name === "" ? item?.name : name,
