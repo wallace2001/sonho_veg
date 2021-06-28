@@ -6,3 +6,15 @@
 ### Tecnologias Utilizadas
 #### Para este site, esta sendo utilizadas: ReactJs, NextJs, Redux, Javascript, Typescript, Node.js e sqlite.
 ### Posteriormente estarei desenvolvendo o aplicativo deste site.
+
+## Pedidos em tempo real utilizando Socket.Io
+![panel](https://github.com/wallace2001/sonho_veg/blob/develop/images/panel.png)
+
+
+## Todas as compras feitas pelo usuário
+![user](https://github.com/wallace2001/sonho_veg/blob/develop/images/payments.png)
+
+
+## Os detalhes das compras feitas pelo usuário
+![details](https://github.com/wallace2001/sonho_veg/blob/develop/images/details.png)
+#
