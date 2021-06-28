@@ -98,12 +98,9 @@ export const ModalEdit = ({open, onClose, item}: Props) => {
         //     category,
         //     image: file.length === 1 ? file[0] : item?.image
         // }
-        // console.log(values);
 
     }
 
-
-    console.log(file.length);
 
     return (
         <Modal onClose={onClose} isOpen={open}>

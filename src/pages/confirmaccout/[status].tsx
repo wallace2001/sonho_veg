@@ -11,7 +11,6 @@ interface Props{
 
 export default function Confirmed({status}: Props){
     const router = useRouter();
-    console.log(router.query);
 
     return(
         status.status === '0' ? (

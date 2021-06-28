@@ -23,7 +23,6 @@ export const sendEmails = ({ content }: propsContent) => (dispatch: AppDispatch)
     dispatch(changeLoading({open: true}));
     HttpAuth.post('sendEmail', content).then(res => {
         dispatch(changeLoading({open: false}));
-        // console.log(content);
         if(res.data.error){
             dispatch(change({
                 message: res.data.error

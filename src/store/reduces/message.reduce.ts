@@ -7,7 +7,6 @@ const initialState = {
 }
 
 export const MessageReducer = (state = initialState, { type, payload }) => {
-    console.log(payload);
     switch (type) {
 
     case actionName.CHANGE:

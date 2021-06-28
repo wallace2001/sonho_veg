@@ -43,7 +43,6 @@ export const ProductSlider = (props: PropsProductSlider) => {
 
     useEffect(() => {
         setWindowTam(window.innerWidth);
-        console.log(innerWidth);
         if(window.innerWidth >= 1300){
             setTamSlider(60)
         }else if(window.innerWidth <= 983){
@@ -62,8 +61,6 @@ export const ProductSlider = (props: PropsProductSlider) => {
     const cart = await JSON.parse(localStorage.getItem("cart_list"));
     const oldCart: Array<[]> = cart ? cart : [];
     let array = oldCart;
-
-    console.log(product);
 
     const newItem: any = {
         id: product.id,

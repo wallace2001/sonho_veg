@@ -2,11 +2,11 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const Http = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_URL_API_WEB_SERVER
+    baseURL: "http://localhost:3002/"
 });
 
 export const HttpAuth = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_URL_API_AUTH_SERVER
+    baseURL: "http://localhost:3002/auth/"
 });
 
 HttpAuth.interceptors.request.use(

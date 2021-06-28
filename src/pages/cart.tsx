@@ -71,8 +71,6 @@ export default function Cart(){
         products[index].quantity = finalQuantity;
         products[index].price = finalPrice;
 
-        console.log(finalPrice);
-
         localStorage.setItem("cart_list", JSON.stringify(products));
         setCount(prevState => prevState + 1);
     }
@@ -88,8 +86,6 @@ export default function Cart(){
 
         products[index].quantity = finalQuantity;
         products[index].price = finalPrice;
-
-        console.log(products);
 
         localStorage.setItem("cart_list", JSON.stringify(products));
         setCount(prevState => prevState + 1);

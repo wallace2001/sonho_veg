@@ -27,8 +27,6 @@ export const MenuHeader = () => {
     }, []);
     const { account }: AuthProps = useSelector((state: RootStateOrAny) => state.authReducer);
 
-    console.log(account.admin);
-
     return (
         <Menu>
             <MenuButton as={Button} colorScheme="pink">

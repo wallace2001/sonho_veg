@@ -3,6 +3,7 @@ import { HttpAuth } from "../../config/http";
 import { AppDispatch } from "../store";
 import { changeLoading } from "./loading.action";
 import { change as changeNotify } from './notify.action';
+import { getRequest } from "./request.action";
 
 interface TypeProducts{
     calories: string;
@@ -31,7 +32,6 @@ export const saveCartDatabase = (products, date: Date) => async(dispatch) => {
         date
     }).then(res => {
         dispatch(change(true));
-        console.log(res);
         if(res.data.error === 'Token invalid'){
             dispatch(changeNotify({
                 open: true,
@@ -59,9 +59,34 @@ export const deleteCartDatabase = (id: string) => async(dispatch) => {
 export const paymentPage = () => async(dispatch) => {
     await HttpAuth.get('/user').then(res => {
         dispatch(change(true));
-        console.log(res);
         if(!res.data.error){
             window.location.replace(`https://sonhovegan.herokuapp.com/auth/payment/buy?id=${res.data.id}`);
+        }
+    });
+}
+
+export const updatePayments = (id: string, status: string) => async(dispatch) => {
+    dispatch(changeLoading({open: true}));
+    HttpAuth.patch(`payment/update_status/${id}`, {status}).then(res => {
+        dispatch(changeLoading({open: false}));
+        if(!res.data.error){
+            dispatch(changeNotify({
+                open: true,
+                title: "Atualizado com sucesso"
+            }));
+            dispatch(getRequest());
+            setTimeout(() => {
+                dispatch(changeNotify({open: false}));
+            }, 2 * 1000);
+        }else{
+            dispatch(changeNotify({
+                open: true,
+                title: "Erro ao atualizar",
+                status: "error"
+            }));
+            setTimeout(() => {
+                dispatch(changeNotify({open: false}));
+            }, 2 * 1000);
         }
     });
 }

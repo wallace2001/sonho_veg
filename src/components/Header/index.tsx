@@ -35,8 +35,6 @@ export const Header = (props: CartProps) => {
       func();
     }, []);
 
-    console.log(lengthCart);
-
     return (
         <div className={styles.background}>
           <div className={styles.container}>

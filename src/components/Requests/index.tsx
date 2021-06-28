@@ -47,14 +47,16 @@ interface PropsData{
         date: Date;
         update_time: Date;
         status: string;
-    }
+    },
+    updateStatus: (id: string, status: string) => void;
 }
 
-export const Requests = ({data}: PropsData) => {
+export const Requests = ({data, updateStatus}: PropsData) => {
+
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: "framework",
-        defaultValue: "Pendente",
-        onChange: console.log,
+        defaultValue: data.status,
+        onChange: (e) => updateStatus(data.id, e),
     });
     const [openMore, setOpenMore] = useState<boolean>(false);
     const options = ["Pendente", "Finalizado", "Entregue"];

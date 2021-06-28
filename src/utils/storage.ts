@@ -38,6 +38,4 @@ export const Storage = async({id}: PropsStorage) => {
         // }));
     }
     await localStorage.setItem("cart_list", JSON.stringify(oldCart));
-
-    console.log(JSON.parse(localStorage.getItem("cart_list")));
 }

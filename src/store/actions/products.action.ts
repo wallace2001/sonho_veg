@@ -60,9 +60,10 @@ export const showProduct = (id: string) => (dispatch: AppDispatch) => {
 }
 
 export const productsAll = () => (dispatch: AppDispatch) => {
+    dispatch(changeLoading({open: true}));
     Http.get('productsall').then(res => {
+        dispatch(changeLoading({open: false}));
         if(typeof res !== 'undefined'){
-            console.log(res.data);
             dispatch(change(res.data));
         }
     })
@@ -111,7 +112,6 @@ export const deleteProduct = (id: string) => (dispatch) => {
     dispatch(changeLoading({open: true}));
     HttpAuth.delete(`products_delete/${id}`).then(res => {
         dispatch(changeLoading({open: false}));
-        console.log(res);
         if(!res){
             dispatch(changeLoading({open: true}));
         }
@@ -127,6 +127,7 @@ export const deleteProduct = (id: string) => (dispatch) => {
         }else{
             dispatch(changeNotify({
                 open: true,
+                status: "error",
                 title:"Erro ao deletar produto"
             }));
             setTimeout(() => {
@@ -158,7 +159,8 @@ export const updateProduct = (id: string, content: PropsUpdate, image: string) =
             dispatch(productsAll());
             dispatch(changeNotify({
                 open: true,
-                title: "Produto atualizado com sucesso"
+                title: "Produto atualizado com sucesso",
+                status: "success"
             }));
             setTimeout(() => {
                 dispatch(changeNotify({
@@ -168,6 +170,7 @@ export const updateProduct = (id: string, content: PropsUpdate, image: string) =
         }else{
             dispatch(changeNotify({
                 open: true,
+                status: "error",
                 title: "Erro ao atualizar produto"
             }));
             setTimeout(() => {

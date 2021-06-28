@@ -46,14 +46,10 @@ export const ProductSliderNew = (props: PropsProductSlider) => {
         setWindowTam(window.innerWidth)
     }, []);
 
-    console.log(props.products);
-
     const handleSaveStorage = async (product: Products, slug: string) => {
         const cart = await JSON.parse(localStorage.getItem("cart_list"));
         const oldCart: Array<[]> = cart ? cart : [];
         let array = oldCart;
-    
-        console.log(product);
     
         const newItem: any = {
             id: product.id,
@@ -114,7 +110,6 @@ export const ProductSliderNew = (props: PropsProductSlider) => {
     }
 
     function SamplePrevArrow(props) {
-        console.log(props);
         const { className, style, onClick } = props;
         return (
           <div
@@ -145,8 +140,6 @@ export const ProductSliderNew = (props: PropsProductSlider) => {
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />
       };
-
-      console.log(props?.products);
 
     return (
         <>

@@ -91,8 +91,6 @@ export default function SendEmail(){
             }));
         }, 2 * 1000);
     }
-
-    console.log(users);
     return(
         <div className={styles.container}>
             <div className={styles.header}>

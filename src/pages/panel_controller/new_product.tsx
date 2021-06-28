@@ -39,8 +39,6 @@ export default function SendEmail(){
         // file: yup.array().required('Campo obrigatório.')
     });
 
-    // console.log(file[0]);
-
     const {
         values,
         touched,
@@ -179,7 +177,6 @@ export default function SendEmail(){
                                         <section>                                         
                                         <div className={ isDragAccept ? styles.dropzoneActive : isDragReject ? styles.dropzoneReject : styles.dropzone} {...getRootProps()}>
                                             <input {...getInputProps()}
-                                                // onChange={(e) => console.log(e.target.files[0])}
                                                 // value={values.file}
                                                 // onChange={handleChange}
                                                 // onBlur={handleBlur}

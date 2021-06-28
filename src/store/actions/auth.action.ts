@@ -94,7 +94,6 @@ export const accountVerify = () => async (dispatch: AppDispatch) => {
             }));
         }
     }).catch((error) => {
-        console.log(error);
     })
 }
 
@@ -130,7 +129,6 @@ export const listUsers = () => (dispatch: AppDispatch) => {
     HttpAuth.get("userList").then(res => {
         dispatch(changeLoading({open: false}));   
         if(typeof res !== 'undefined'){
-            console.log(res.data);
             res.data.map(item => {
                 return dispatch(listUser({
                     id: item.id,
@@ -163,24 +161,6 @@ export const login = (credentials: credentialsProps, checked: boolean) => (dispa
             }))
         }
     }).catch((error) => {
-        console.log(error);
-        // dispatch(changeLoading({ open: false }));
-
-        // if(typeof error.response !== 'undefined') {
-        //     if(error.response.status === 401 || error.response.status === 400) {
-        //         dispatch(changeNotify({
-        //             open: true,
-        //             message: "Email ou senha incorretos",
-        //             class: 'error',
-        //         }))
-        //     }
-        // } else {
-        //     dispatch(changeNotify({
-        //         open: true,
-        //         message: "Erro ao se conectar ao servidor",
-        //         class: 'error',
-        //     }))
-        // }
     })
 }
 

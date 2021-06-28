@@ -125,8 +125,6 @@ export default function Payment(){
         setOpen(!open);
     }
 
-    console.log(showMore);
-
     return(
         <>
             <Header aleradyCart={false} />

@@ -25,8 +25,6 @@ export default function Home() {
     setWindowTam(window.innerWidth);
   },[]);
 
-  console.log(products);
-
   return (
     <div className={styles.totalBackground}>
       <div className={styles.totalWallpaper}>

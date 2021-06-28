@@ -51,7 +51,6 @@ interface Props{
 }
 
 export const ModalShowMore = ({item, open, onClose}: Props) => {
-    console.log(item);
     return (
         <Modal onClose={onClose} isOpen={open}>
             <ModalOverlay />

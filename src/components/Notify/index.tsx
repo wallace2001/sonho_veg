@@ -15,7 +15,6 @@ export const Notify = () => {
     const dispatch = useDispatch();
     const notify: NotifyProps = useSelector((state: RootStateOrAny) => state.notifyRedycer);
 
-    console.log(notify);
 
     return (
         <Alert status="success">

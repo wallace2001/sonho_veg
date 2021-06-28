@@ -31,7 +31,7 @@ export const getRequest = () => (dispatch: AppDispatch) => {
     dispatch(changeLoading({open: true}));
     HttpAuth.get("payment/request").then(res => {
         dispatch(changeLoading({open: false}));
-        if(!res.data.error){
+        if(!res?.data.error){
             const request = res.data.map((item: PropsRequests) => ({
                 id: item.id,
                 user_id: item.user_id,
@@ -47,7 +47,6 @@ export const getRequest = () => (dispatch: AppDispatch) => {
                 create_time: item.create_time,
                 update_time: item.update_time,
             }));
-            console.log(request);
             dispatch(changeRequest(request));
         }
     });

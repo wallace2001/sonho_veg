@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/layout';
 import { Select } from '@chakra-ui/select';
 import { GetServerSideProps } from 'next';
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { useEffect } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import styles from '../../../styles/panel.module.scss';
@@ -11,6 +11,7 @@ import { Requests } from '../../components/Requests';
 import socketIo from 'socket.io-client';
 import { getRequest } from '../../store/actions/request.action';
 import { FormLabel, FormControl } from '@chakra-ui/form-control';
+import { updatePayments } from '../../store/actions/payment.action';
 
 
 interface PropsPayerParse{
@@ -66,21 +67,62 @@ interface PropsRequests{
         status: string;
     }];
 }
+interface PropsRequestsT{
+        id: string;
+        user_id: string;
+        intent: string;
+        state: string;
+        cart: string;
+        payer: {
+            payer_info: {
+                email: {
+                    email: string;
+                    name: string;
+                },
+                shipping_address: {
+                    city: string;
+                    country_code: string;
+                    line1: string;
+                    normalization_status: string;
+                    postal_code: string;
+                    recipient_name: string;
+                    state: string;
+                }
+            }
+        };
+        transactions: [
+            {
+                amount: {
+                    total: string;
+                }
+            }
+        ];
+        products: [
+            {
+                name: string;
+                quantity: string;
+            }
+        ],
+        telphone: string;
+        create_time: Date;
+        date: Date;
+        update_time: Date;
+        status: string;
+}
 
 export default function Request(){
 
+    const [paymentsFiltered, setPaymentsFiltered] = useState<PropsRequestsT[]>([]);
+    const [selectFilter, setSelectFilter] = useState<string>("all");
     const dispatch = useDispatch();
     const { requests }: PropsRequests = useSelector((state: RootStateOrAny) => state.requestReducer);
 
-    const socket = socketIo('https://sonhovegan.herokuapp.com', {
+    const socket = socketIo('https://sonhovegan.herokuapp.com/', {
         transports: ['websocket'],
       });
 
     const NewRequest = (request: PropsPayerParse) => {
         new Audio('/notification.mp3').play();
-        // const lengthR = requests.length;
-        // const valueRequest = requests[lengthR];
-        // const payerParse: PropsPayerParse = JSON.parse(valueRequest.payer);
 
         if(Notification.permission === 'granted'){
             new Notification('Novo pedido', {
@@ -88,6 +130,25 @@ export default function Request(){
             })
         }
     }
+
+    const updateStatus = (id: string, status: string ) => {
+        dispatch(updatePayments(id, status));
+    }
+    
+    // socket.on("updateStatusProduct", (request) => {
+    //     dispatch(getRequest());
+    // });
+
+    // useEffect(() => {
+    //     const filtered: any = requests.filter(item => {
+    //         if(selectFilter == "all" || !selectFilter){
+    //             return item;
+    //         }
+    //         return item.status == selectFilter
+    //     });
+
+    //     setPaymentsFiltered(filtered);
+    // }, [selectFilter]);
 
     useEffect(() => {
         Notification.requestPermission();
@@ -102,10 +163,6 @@ export default function Request(){
             NewRequest(request.payer);
         });
     }, []);
-
-
-
-    console.log(requests);
 
     return(
         <div className={styles.container}>
@@ -124,16 +181,18 @@ export default function Request(){
                                         bg="#fff"
                                         colorScheme="#000" 
                                         borderRadius={0}
-                                        placeholder="Todos">
-                                    <option value="2">Pendentes</option>
-                                    <option value="3">Finalizados</option>
-                                    <option value="3">Finalizados e prontos</option>
+                                        placeholder="Todos"
+                                        onChange={(e: ChangeEvent<HTMLSelectElement>) => setSelectFilter(e.target.value)}
+                                        >
+                                    <option value="Pendente">Pendentes</option>
+                                    <option value="Finalizado">Finalizados</option>
+                                    <option value="Entregue">Finalizados e prontos</option>
                                 </Select>
                             </FormControl>
                             <div className={styles.requestBox}>
                                 {requests.map((item, index) => {
                                     return(
-                                        <Requests key={index} data={item} />
+                                        <Requests key={index} data={item} updateStatus={updateStatus} />
                                     );
                                 })}
                             </div>
