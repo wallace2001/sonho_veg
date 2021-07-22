@@ -2,11 +2,11 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const Http = axios.create({
-    baseURL: "http://localhost:3002/"
+    baseURL: "https://sonhovegan.herokuapp.com/"
 });
 
 export const HttpAuth = axios.create({
-    baseURL: "http://localhost:3002/auth/"
+    baseURL: "https://sonhovegan.herokuapp.com/auth/"
 });
 
 HttpAuth.interceptors.request.use(
